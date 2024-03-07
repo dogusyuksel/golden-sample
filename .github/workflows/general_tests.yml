@@ -1,0 +1,75 @@
+name: general-tests
+# Builds release dockers for ops-release, tagging them with the ops tag given
+
+on: [push, pull_request]
+
+jobs:
+  general-tests-job:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        github-server-url: https://github.com/dogusyuksel/cicd-example.git
+        lfs: true
+
+    - name: Login to Docker Hub
+      uses: docker/login-action@v3
+      with:
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v3
+
+    - name: Build Project Docker
+      uses: docker/build-push-action@v5
+      with:
+        load: true
+        tags: |
+          project_docker:master
+        context: .
+        file: Dockerfile
+        pull: false
+        push: false
+        provenance: false
+
+    - name: Build Check
+      run: |
+        ./run_docker.sh "cd bitbake-structure/build/ && source environment && bitbake buildgcc:do_build ; cat tmp/buildgcc/work/log.do_build && bitbake buildgpp:do_build ; cat tmp/buildgpp/work/log.do_build"
+
+    - name: Dirty Check
+      run: |
+        ./run_docker.sh "cd bitbake-structure/test/ && source environment && bitbake testall:do_dirtycheck ; cat tmp/testall/work/log.do_dirtycheck"
+
+    - name: Format Check
+      run: |
+        ./run_docker.sh "cd bitbake-structure/test/ && source environment && bitbake testall:do_formatcheck ; cat tmp/testall/work/log.do_formatcheck"
+
+    - name: SPLint Check
+      run: |
+        ./run_docker.sh "cd bitbake-structure/test/ && source environment && bitbake testall:do_lintcheck ; cat tmp/testall/work/log.do_lintcheck"
+
+    - name: Unit Test
+      run: |
+        ./run_docker.sh "cd bitbake-structure/test/ && source environment && bitbake testall:do_unittest ; cat tmp/testall/work/log.do_unittest"
+
+    - name: Checkout basic-C-linter
+      uses: actions/checkout@v2
+      with:
+        repository: dogusyuksel/basic-C-linter
+        path: './basic-C-linter'
+
+    - name: Build basic-C-linter
+      run: |
+         cd basic-C-linter
+         make
+
+    - name: Run basic-C-linter
+      run: |
+         ./basic-C-linter/analyzer -d ./ReadPeriodic/src
+
+    - name: Hadolint Check
+      uses: hadolint/hadolint-action@v3.1.0
+      with:
+        dockerfile: Dockerfile
+        failure-threshold: error
