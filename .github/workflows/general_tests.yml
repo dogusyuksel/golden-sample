@@ -73,3 +73,12 @@ jobs:
       with:
         dockerfile: Dockerfile
         failure-threshold: error
+
+    - name: pytest
+      run: |
+         ./run_docker.sh "cd /workspace/custom_echo && pytest"
+
+    - name: flake8
+      run: |
+         echo "'isort .' can be executed if needed"
+         ./run_docker.sh "cd /workspace && flake8 --max-line-length=120"

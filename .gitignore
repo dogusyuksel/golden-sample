@@ -3,6 +3,8 @@ port_read_periodic
 ReadPeriodic/build
 *.lock
 *.sock
+*.exe
+custom_echo/__pycache__/
 
 *.log
 **/cache/**

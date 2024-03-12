@@ -59,4 +59,24 @@ In this project, bitbake structure has 2 layers like meta-test and meta-build. A
 check "Dockerfile".
 ```
 
+9. python example
+```
+check "custom_echo" folder.
+```
+
+10. pytest
+```
+check "custom_echo" folder.
+```
+
+11. glibc best practices
+```
+check "glibc" folder.
+```
+
+12. documents
+```
+check "docs" folder for general engineering/coding tips.
+```
+
 This is completely FREE project.
