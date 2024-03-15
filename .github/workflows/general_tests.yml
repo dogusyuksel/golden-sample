@@ -33,7 +33,7 @@ jobs:
       with:
         load: true
         tags: |
-          project_docker:master
+          ${{ secrets.DOCKER_REPO }}:master
         context: .
         file: Dockerfile
         pull: true
@@ -42,23 +42,23 @@ jobs:
 
     - name: Build Check
       run: |
-        ./run_docker.sh "cd bitbake-structure/build/ && source environment && bitbake buildgcc:do_build ; cat tmp/buildgcc/work/log.do_build && bitbake buildgpp:do_build ; cat tmp/buildgpp/work/log.do_build"
+        ./run_docker.sh ${{ secrets.DOCKER_REPO }}:master "cd bitbake-structure/build/ && source environment && bitbake buildgcc:do_build ; cat tmp/buildgcc/work/log.do_build && bitbake buildgpp:do_build ; cat tmp/buildgpp/work/log.do_build"
 
     - name: Dirty Check
       run: |
-        ./run_docker.sh "cd bitbake-structure/test/ && source environment && bitbake testall:do_dirtycheck ; cat tmp/testall/work/log.do_dirtycheck"
+        ./run_docker.sh ${{ secrets.DOCKER_REPO }}:master "cd bitbake-structure/test/ && source environment && bitbake testall:do_dirtycheck ; cat tmp/testall/work/log.do_dirtycheck"
 
     - name: Format Check
       run: |
-        ./run_docker.sh "cd bitbake-structure/test/ && source environment && bitbake testall:do_formatcheck ; cat tmp/testall/work/log.do_formatcheck"
+        ./run_docker.sh ${{ secrets.DOCKER_REPO }}:master "cd bitbake-structure/test/ && source environment && bitbake testall:do_formatcheck ; cat tmp/testall/work/log.do_formatcheck"
 
     - name: SPLint Check
       run: |
-        ./run_docker.sh "cd bitbake-structure/test/ && source environment && bitbake testall:do_lintcheck ; cat tmp/testall/work/log.do_lintcheck"
+        ./run_docker.sh ${{ secrets.DOCKER_REPO }}:master "cd bitbake-structure/test/ && source environment && bitbake testall:do_lintcheck ; cat tmp/testall/work/log.do_lintcheck"
 
     - name: Unit Test
       run: |
-        ./run_docker.sh "cd bitbake-structure/test/ && source environment && bitbake testall:do_unittest ; cat tmp/testall/work/log.do_unittest"
+        ./run_docker.sh ${{ secrets.DOCKER_REPO }}:master "cd bitbake-structure/test/ && source environment && bitbake testall:do_unittest ; cat tmp/testall/work/log.do_unittest"
 
     - name: Checkout basic-C-linter
       uses: actions/checkout@v2
@@ -83,19 +83,19 @@ jobs:
 
     - name: pytest
       run: |
-         ./run_docker.sh "cd /workspace/custom_echo && pytest"
+         ./run_docker.sh ${{ secrets.DOCKER_REPO }}:master "cd /workspace/custom_echo && pytest"
 
     - name: flake8
       run: |
          echo "'isort .' can be executed if needed"
-         ./run_docker.sh "cd /workspace && flake8 --max-line-length=120"
+         ./run_docker.sh ${{ secrets.DOCKER_REPO }}:master "cd /workspace && flake8 --max-line-length=120"
 
     - name: Push Project Docker
       if: steps.changes.outputs.dockerfile == 'true'
       uses: docker/build-push-action@v5
       with:
         tags: |
-          project_docker:master
+          ${{ secrets.DOCKER_REPO }}:master
         context: .
         file: Dockerfile
         pull: true

@@ -1,18 +1,23 @@
 #!/bin/bash
 
-if [ "$#" -gt 0 ]; then
+if [ "$#" -lt 1 ]; then
+    echo "you should give the image name"
+    exit 1
+fi
+
+if [ "$#" -gt 1 ]; then
     argc=$#
     argv=("$@")
     full_string=""
     priv_string=""
 
-    for (( j=0; j<argc; j++ )); do
+    for (( j=1; j<argc; j++ )); do
         full_string="$priv_string${argv[j]} "
         priv_string=$full_string
     done
     # echo "->$full_string<-"
-    docker run --rm -t --net=host -v $(pwd):/workspace --entrypoint=/bin/bash project_docker:master -c "$full_string"
+    docker run --rm -t --net=host -v $(pwd):/workspace --entrypoint=/bin/bash ${argv[0]}:master -c "$full_string"
 else
-    docker run --rm -it --net=host -v $(pwd):/workspace --entrypoint=/bin/bash project_docker:master
+    docker run --rm -it --net=host -v $(pwd):/workspace --entrypoint=/bin/bash $@:master
 fi
 
