@@ -5,4 +5,9 @@ if [ "$#" -lt 1 ]; then
     exit 1
 fi
 
-docker build -t $@:master .
+if [ "$#" -gt 1 ]; then
+    echo "you should not give additional args"
+    exit 1
+fi
+
+docker build -t $@ .
