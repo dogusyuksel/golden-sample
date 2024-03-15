@@ -16,6 +16,8 @@
   :ceedling_version: 0.31.1
   :default_tasks:
     - test:all
+    - gcov:all
+    - util:gcov
 
 #:test_build:
 #  :use_assembly: TRUE
@@ -94,12 +96,19 @@
 :gcov:
   :html_report: TRUE
   :html_report_type: detailed
-  :xml_report: FALSE
+  :reports:
+    - HtmlDetailed
+    - Text
+    - JSON
+  :utilities:
+    - gcovr           # Use gcovr to create the specified reports (default).
   :gcovr:
-    :gcov_filter: "^src"
-    :report_include: "^src"
-    :html_medium_threshold: 75
-    :html_high_threshold: 90
+    :html_artifact_filename: ReadPeriodicTestReportHTML
+    :report_root: ".."
+    :report_include: ".*ReadPeriodic.*|.*HWIO.*|.*TMR.*"
+    :report_exclude: ".*bitbake-structure.*|.*docs.*|.*scripts.*|.*glibc.*"
+    :gcov_exclude: ".*bitbake-structure.*|.*docs.*|.*scripts.*|.*glibc.*"
+    :print_summary: true
 
 #:tools:
 # Ceedling defaults to using gcc for compiling, linking, etc.

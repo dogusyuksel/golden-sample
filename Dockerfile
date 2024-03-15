@@ -23,6 +23,7 @@ RUN apt-get update && \
     apt-get -y clean
 
 RUN gem install ceedling
+RUN pip install gcovr
 
 RUN git config --global --add safe.directory /workspace
 

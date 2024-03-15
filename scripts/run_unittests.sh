@@ -10,7 +10,7 @@ while IFS= read -r line; do
     cd $current_dir/$parentdir
 
     ceedling clean
-    ceedling test:all
+    ceedling gcov:all utils:gcov
 
     retval=$?
     if [ $retval -ne 0 ]
