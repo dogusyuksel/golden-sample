@@ -8,49 +8,48 @@
 #include <unistd.h>
 
 void print_error_and_exit(const char *format, ...) {
-  va_list mlist;
-  char *buffer = NULL;
+    va_list mlist;
+    char *buffer = NULL;
 
-  va_start(mlist, format);
-  vasprintf(&buffer, format, mlist);
-  va_end(mlist);
+    va_start(mlist, format);
+    vasprintf(&buffer, format, mlist);
+    va_end(mlist);
 
-  if (!buffer)
-    exit(1);
+    if (!buffer)
+        exit(1);
 
-  fprintf(stderr, "%s\n", buffer);
-  free(buffer);
+    fprintf(stderr, "%s\n", buffer);
+    free(buffer);
 
-  exit(2);
+    exit(2);
 }
 
 int main(void) {
-  int estimatedbuffersize = 100;
-  char *buffer = NULL, *buff_start = NULL;
-  int fd = open("mmapfile", O_CREAT | O_RDWR | O_NONBLOCK, 0666);
+    int estimatedbuffersize = 100;
+    char *buffer = NULL, *buff_start = NULL;
+    int fd = open("mmapfile", O_CREAT | O_RDWR | O_NONBLOCK, 0666);
 
-  ftruncate(fd, estimatedbuffersize);
+    ftruncate(fd, estimatedbuffersize);
 
-  buffer = buff_start =
-      mmap(NULL, estimatedbuffersize, PROT_WRITE, MAP_SHARED, fd, 0);
-  if (!buffer) {
+    buffer = buff_start = mmap(NULL, estimatedbuffersize, PROT_WRITE, MAP_SHARED, fd, 0);
+    if (!buffer) {
+        close(fd);
+        print_error_and_exit("mmap failed\n");
+    }
+
+    buffer[0] = 'a';
+    buffer[1] = 's';
+    buffer[2] = 'd';
+    buffer[3] = '\n';
+
+    msync(buff_start, estimatedbuffersize, MS_SYNC);
+
+    munmap(buff_start, estimatedbuffersize);
+
     close(fd);
-    print_error_and_exit("mmap failed\n");
-  }
 
-  buffer[0] = 'a';
-  buffer[1] = 's';
-  buffer[2] = 'd';
-  buffer[3] = '\n';
+    // OUTPUT: cat mmapfile
+    //  asd
 
-  msync(buff_start, estimatedbuffersize, MS_SYNC);
-
-  munmap(buff_start, estimatedbuffersize);
-
-  close(fd);
-
-  // OUTPUT: cat mmapfile
-  //  asd
-
-  return 0;
+    return 0;
 }

@@ -1,6 +1,6 @@
 .vscode
 port_read_periodic
-ReadPeriodic/build
+ceedling/myproject/build
 *.lock
 *.sock
 *.exe

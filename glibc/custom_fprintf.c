@@ -21,23 +21,23 @@
 #include <stdlib.h>
 
 void custom_fprint(FILE *out_stream, const char *format, ...) {
-  va_list mlist;
-  char *buffer = NULL;
+    va_list mlist;
+    char *buffer = NULL;
 
-  va_start(mlist, format);
-  vasprintf(&buffer, format, mlist);
-  va_end(mlist);
+    va_start(mlist, format);
+    vasprintf(&buffer, format, mlist);
+    va_end(mlist);
 
-  if (!buffer)
-    exit(1);
+    if (!buffer)
+        exit(1);
 
-  fprintf(out_stream, "%s\n", buffer);
-  free(buffer);
+    fprintf(out_stream, "%s\n", buffer);
+    free(buffer);
 }
 
 int main(void) {
-  custom_fprint(stderr, "printed error");
-  custom_fprint(stdout, "printed log");
+    custom_fprint(stderr, "printed error");
+    custom_fprint(stdout, "printed log");
 
-  exit(EXIT_SUCCESS);
+    exit(EXIT_SUCCESS);
 }

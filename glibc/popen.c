@@ -2,20 +2,20 @@
 #include <string.h>
 
 int main(void) {
-  char buffer[256] = {0};
-  FILE *fp = popen("ifconfig lo", "r");
+    char buffer[256] = {0};
+    FILE *fp = popen("ifconfig lo", "r");
 
-  if (!fp) {
-    perror("popen error");
-    return 1;
-  }
+    if (!fp) {
+        perror("popen error");
+        return 1;
+    }
 
-  while (fgets(buffer, sizeof(buffer), fp)) {
-    printf("%s", buffer);
-    memset(buffer, 0, sizeof(buffer));
-  }
+    while (fgets(buffer, sizeof(buffer), fp)) {
+        printf("%s", buffer);
+        memset(buffer, 0, sizeof(buffer));
+    }
 
-  pclose(fp);
+    pclose(fp);
 
-  return 0;
+    return 0;
 }

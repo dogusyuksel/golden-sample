@@ -52,80 +52,78 @@ similar to degenerate but have children only one side
 
 static void *root = NULL;
 
-static int compare(const void *pa, const void *pb) {
-  return (*(int *)pa - *(int *)pb);
-}
+static int compare(const void *pa, const void *pb) { return (*(int *)pa - *(int *)pb); }
 
 static void action(const void *nodep, VISIT which, int depth) {
-  /*preorder, postorder, and endorder are known as preorder, inorder, and
-  postorder: before visiting the children, after the first and before the
-  second, and after visiting the children. Thus, the choice of name postorder is
-  rather confusing*/
-  int *datap;
+    /*preorder, postorder, and endorder are known as preorder, inorder, and
+    postorder: before visiting the children, after the first and before the
+    second, and after visiting the children. Thus, the choice of name postorder is
+    rather confusing*/
+    int *datap;
 
-  switch (which) {
-  case preorder:
-    break;
-  case postorder:
-    datap = *(int **)nodep;
-    printf("%6d\tdepth: %d\n", *datap, depth);
-    break;
-  case endorder:
-    break;
-  case leaf:
-    datap = *(int **)nodep;
-    printf("%6d\tdepth: %d\n", *datap, depth);
-    break;
-  }
+    switch (which) {
+    case preorder:
+        break;
+    case postorder:
+        datap = *(int **)nodep;
+        printf("%6d\tdepth: %d\n", *datap, depth);
+        break;
+    case endorder:
+        break;
+    case leaf:
+        datap = *(int **)nodep;
+        printf("%6d\tdepth: %d\n", *datap, depth);
+        break;
+    }
 }
 
 static void freenode(void *nodep) {
-  // since our nodes are just integer pointer
-  // simple free is enough
-  if (nodep) {
-    free(nodep);
-  }
+    // since our nodes are just integer pointer
+    // simple free is enough
+    if (nodep) {
+        free(nodep);
+    }
 }
 
 int main(void) {
-  int i = 0;
-  int **val = NULL;
-  int dummy[11] = {179, 102, 220, 124, 214, 40, 16, 12, 70, 161, 35};
+    int i = 0;
+    int **val = NULL;
+    int dummy[11] = {179, 102, 220, 124, 214, 40, 16, 12, 70, 161, 35};
 
-  for (i = 0; i < 11; i++) {
-    int *ptr = (int *)malloc(sizeof(int));
-    if (!ptr) {
-      perror("malloc failed\n");
-      goto out;
+    for (i = 0; i < 11; i++) {
+        int *ptr = (int *)malloc(sizeof(int));
+        if (!ptr) {
+            perror("malloc failed\n");
+            goto out;
+        }
+
+        *ptr = dummy[i];
+
+        // If the tree does not contain a matching entry the key value will be added
+        // to the tree
+        val = tsearch(ptr, &root, compare);
+
+        if (*val != ptr) {
+            goto out;
+        }
     }
 
-    *ptr = dummy[i];
+    twalk(root, action);
 
-    // If the tree does not contain a matching entry the key value will be added
-    // to the tree
-    val = tsearch(ptr, &root, compare);
+    if (NULL != tfind(&dummy[10], &root, compare)) {
+        printf("%d is found\n", dummy[10]);
 
-    if (*val != ptr) {
-      goto out;
+        if (NULL != tdelete(&dummy[10], &root, compare)) {
+            printf("%d is deleted successfully\n", dummy[10]);
+
+            twalk(root, action);
+        }
     }
-  }
-
-  twalk(root, action);
-
-  if (NULL != tfind(&dummy[10], &root, compare)) {
-    printf("%d is found\n", dummy[10]);
-
-    if (NULL != tdelete(&dummy[10], &root, compare)) {
-      printf("%d is deleted successfully\n", dummy[10]);
-
-      twalk(root, action);
-    }
-  }
 
 out:
-  tdestroy(root, freenode);
+    tdestroy(root, freenode);
 
-  exit(EXIT_SUCCESS);
+    exit(EXIT_SUCCESS);
 }
 
 /*OUTPUT:

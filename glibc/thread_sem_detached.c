@@ -45,57 +45,57 @@ Just Exiting...
 sem_t sem;
 
 void *thread(void *arg) {
-  if (arg) {
-    printf("arg: %p\n", arg);
-  }
+    if (arg) {
+        printf("arg: %p\n", arg);
+    }
 
-  // wait
-  sem_wait(&sem); // decrement semaphore value and waits until the value is
-                  // equal to zero
-  printf("\nEntered..\n");
+    // wait
+    sem_wait(&sem); // decrement semaphore value and waits until the value is
+                    // equal to zero
+    printf("\nEntered..\n");
 
-  // critical section
-  sleep(4);
+    // critical section
+    sleep(4);
 
-  // signal
-  printf("\nJust Exiting...\n");
-  sem_post(&sem);
+    // signal
+    printf("\nJust Exiting...\n");
+    sem_post(&sem);
 
-  return NULL;
+    return NULL;
 }
 
 int main(void) {
-  pthread_t t1, t2, t3;
-  pthread_attr_t thread_attr;
+    pthread_t t1, t2, t3;
+    pthread_attr_t thread_attr;
 
-  // 0 means not shared, only in same process
-  // 1 means semaphores initial value (it is binary semaphore)
-  sem_init(&sem, 0, 1);
+    // 0 means not shared, only in same process
+    // 1 means semaphores initial value (it is binary semaphore)
+    sem_init(&sem, 0, 1);
 
-  if (pthread_attr_init(&thread_attr) != 0) {
-    perror("pthread_attr_init failure.\n");
-    exit(EXIT_FAILURE);
-  }
+    if (pthread_attr_init(&thread_attr) != 0) {
+        perror("pthread_attr_init failure.\n");
+        exit(EXIT_FAILURE);
+    }
 
-  if (pthread_attr_setdetachstate(&thread_attr, PTHREAD_CREATE_DETACHED) != 0) {
-    perror("pthread_attr_setdetachstate failure.\n");
-    exit(EXIT_FAILURE);
-  }
+    if (pthread_attr_setdetachstate(&thread_attr, PTHREAD_CREATE_DETACHED) != 0) {
+        perror("pthread_attr_setdetachstate failure.\n");
+        exit(EXIT_FAILURE);
+    }
 
-  pthread_create(&t1, &thread_attr, thread, NULL);
+    pthread_create(&t1, &thread_attr, thread, NULL);
 
-  sleep(2);
+    sleep(2);
 
-  pthread_create(&t2, &thread_attr, thread, NULL);
+    pthread_create(&t2, &thread_attr, thread, NULL);
 
-  sleep(2);
+    sleep(2);
 
-  pthread_create(&t3, &thread_attr, thread, NULL);
+    pthread_create(&t3, &thread_attr, thread, NULL);
 
-  sem_destroy(&sem);
+    sem_destroy(&sem);
 
-  // wait to see all threads are finished
-  sleep(30);
+    // wait to see all threads are finished
+    sleep(30);
 
-  exit(EXIT_SUCCESS);
+    exit(EXIT_SUCCESS);
 }
