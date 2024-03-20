@@ -77,7 +77,7 @@ jobs:
 
     - name: Run basic-C-linter
       run: |
-         ./basic-C-linter/analyzer -d ./ReadPeriodic/src
+         ./basic-C-linter/analyzer -d ./ceedling/myproject/src
 
     - name: Hadolint Check
       uses: hadolint/hadolint-action@v3.1.0
@@ -87,7 +87,7 @@ jobs:
 
     - name: pytest
       run: |
-         ./docker/run_docker.sh ${{ secrets.DOCKER_REPO }}:master "cd /workspace/custom_echo && pytest"
+         ./docker/run_docker.sh ${{ secrets.DOCKER_REPO }}:master "cd /workspace/python/custom_echo && pytest"
 
     - name: flake8
       run: |

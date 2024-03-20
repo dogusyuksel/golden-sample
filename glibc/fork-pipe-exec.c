@@ -167,7 +167,7 @@ int main(int argc, char **args) {
     for (i = 0; i < argc; i++) {
         if (i == 0) {
             args_dup[j++] = strdup("python3");
-            args_dup[j++] = strdup("./../custom_echo/echo.py");
+            args_dup[j++] = strdup("./../python/custom_echo/echo.py");
         } else {
             args_dup[j++] = strdup(args[i]);
         }

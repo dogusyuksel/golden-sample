@@ -4,7 +4,7 @@ ceedling/myproject/build
 *.lock
 *.sock
 *.exe
-custom_echo/__pycache__/
+python/*/__pycache__/
 
 *.log
 **/cache/**
