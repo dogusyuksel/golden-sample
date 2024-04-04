@@ -20,6 +20,8 @@ RUN apt-get update && \
         vim \
         language-pack-en-base \
         tree \
+        can-utils \
+        socat \
         splint && \
     apt-get -y clean
 
