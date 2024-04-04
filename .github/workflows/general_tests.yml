@@ -1,7 +1,7 @@
 name: general-tests
 # Builds release dockers for ops-release, tagging them with the ops tag given
 
-on: [push, pull_request]
+on: [pull_request]
 
 jobs:
   general-tests-job:
