@@ -1,7 +1,9 @@
 #include <arpa/inet.h>
+#include <fcntl.h>
 #include <getopt.h>
 #include <netdb.h>
 #include <netinet/in.h>
+#include <stdarg.h>
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -9,8 +11,6 @@
 #include <sys/socket.h>
 #include <sys/types.h>
 #include <unistd.h>
-#include <fcntl.h>
-#include <stdarg.h>
 
 // only differences are listen and accept on server side
 // and connect on client side
