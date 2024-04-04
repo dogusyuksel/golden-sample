@@ -9,6 +9,8 @@
 #include <sys/socket.h>
 #include <sys/types.h>
 #include <unistd.h>
+#include <fcntl.h>
+#include <stdarg.h>
 
 // only differences are listen and accept on server side
 // and connect on client side
@@ -226,22 +228,18 @@ void work_as_server(char *portnum, char *file_path) {
 
         memset(buf, 0, sizeof(buf));
 
-        FILE *fs = fopen(file_path, "r");
-        if (!fs) {
+        int fd = open(file_path, O_RDONLY | O_NONBLOCK, 0444);
+        if (fd < 0) {
             perror("open failed\n");
             exit(EXIT_FAILURE);
         }
-        if (fgets(buf, sizeof(buf), fs) == NULL) {
-            perror("fgets failed\n");
-            fclose(fs);
-            continue;
-        }
+        read(fd, buf, sizeof(buf));
 
         if (send(client_sock_fd, buf, strlen(buf) + 1, MSG_NOSIGNAL) == -1) {
             perror("read()");
             close(client_sock_fd);
         }
-        fclose(fs);
+        close(fd);
     }
 }
 

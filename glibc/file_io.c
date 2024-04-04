@@ -49,7 +49,7 @@ int main(void) {
     // O_NONBLOCK
 
     // MSB				LSB
-    // 0		0		0		--> execute
+    // 0		0		1		--> execute
     // 0		1		0		--> write
     // 1		0		0		--> read
 
