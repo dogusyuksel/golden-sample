@@ -1,6 +1,6 @@
 CFILES = main.c
   
-OFILES = $(SRCS:.c=.o)
+OFILES = $(CFILES:.c=.o)
 
 CFLAGS = -Wall -Wextra -Werror
 

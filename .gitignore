@@ -5,6 +5,7 @@ ceedling/myproject/build
 *.sock
 *.exe
 python/*/__pycache__/
+executable
 
 *.log
 **/cache/**
