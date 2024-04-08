@@ -43,13 +43,29 @@ jobs:
         push: false
         provenance: false
 
-    - name: Build Check
+    - name: bitbake Build Check
       run: |
         ./docker/run_docker.sh ${{ secrets.DOCKER_REPO }}:master "cd bitbake/buildandtest/ && source environment && bitbake buildgcc:do_build ; cat tmp/buildgcc/work/log.do_build && bitbake buildebug:do_build ; cat tmp/buildebug/work/log.do_build"
 
     - name: valgrind Check
       run: |
         ./docker/run_docker.sh ${{ secrets.DOCKER_REPO }}:master "cd bitbake/buildandtest/ && source environment && bitbake testall ; cat tmp/testall/work/log.do_build"
+
+    - name: glibc Build Check
+      run: |
+        ./docker/run_docker.sh ${{ secrets.DOCKER_REPO }}:master "cd glibc && make all"
+
+    - name: projects Build Check
+      run: |
+        ./docker/run_docker.sh ${{ secrets.DOCKER_REPO }}:master "cd projects && make all"
+
+    - name: can_dump Build Check
+      run: |
+        ./docker/run_docker.sh ${{ secrets.DOCKER_REPO }}:master "cd projects/can_dump && ./build.sh"
+
+    - name: json_parser Build Check
+      run: |
+        ./docker/run_docker.sh ${{ secrets.DOCKER_REPO }}:master "cd projects/json_parser && ./build.sh"
 
     - name: Dirty Check
       run: |

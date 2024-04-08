@@ -1,8 +1,3 @@
-/*
- * This demo application is distributed under the terms of CC0 (public domain dedication).
- * More info: https://creativecommons.org/publicdomain/zero/1.0/
- */
-
 // This is needed to enable necessary declarations in sys/
 #ifndef _GNU_SOURCE
 #define _GNU_SOURCE
