@@ -2,24 +2,21 @@ cmake_minimum_required(VERSION 3.1)
 project(libcanard)
 
 # Libcanard
-include_directories(..)
-include_directories(../drivers/socketcan)
+include_directories(../../thirparty/libcanard)
+include_directories(../../thirparty/libcanard/drivers/socketcan)
 
 # Compiler configuration - supporting only Clang and GCC
-set(CMAKE_C_FLAGS   "${CMAKE_C_FLAGS}   -std=c99  -pedantic")
+set(CMAKE_C_FLAGS   "${CMAKE_C_FLAGS}   -std=c99   -Wall -Wextra -Werror -m32 -pedantic -g -O0")
 
 # C warnings
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wdouble-promotion -Wswitch-enum -Wfloat-equal -Wundef")
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wconversion -Wtype-limits")
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wsign-conversion -Wcast-align -Wmissing-declarations -Wno-conversion -Wno-float-equal -Wno-double-promotion")
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wsign-conversion -Wcast-align -Wmissing-declarations -Wno-conversion -Wno-float-equal")
 
 # Expose internal API for unit testing
 set(CMAKE_C_FLAGS   "${CMAKE_C_FLAGS}   -DCANARD_INTERNAL=''")
 
-add_executable(can_dumper
+add_executable(can_dumper.exe
                 can_dumper.c
-               ../canard.c
-               ../drivers/socketcan/socketcan.c)
-
-target_compile_definitions(can_dumper
-                         PUBLIC DEBUG_ENABLED=1)
+                ../../thirparty/libcanard/canard.c
+                ../../thirparty/libcanard/drivers/socketcan/socketcan.c)
