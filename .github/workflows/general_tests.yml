@@ -106,12 +106,12 @@ jobs:
 
     - name: pytest
       run: |
-         ./docker/run_docker.sh ${{ secrets.DOCKER_REPO }}:master "cd //workspace/python/custom_echo && pytest"
+         ./docker/run_docker.sh ${{ secrets.DOCKER_REPO }}:master "cd /workspace/python/custom_echo && pytest"
 
     - name: flake8
       run: |
          echo "'isort .' can be executed if needed"
-         ./docker/run_docker.sh ${{ secrets.DOCKER_REPO }}:master "cd //workspace && flake8 --max-line-length=120"
+         ./docker/run_docker.sh ${{ secrets.DOCKER_REPO }}:master "cd /workspace/python && flake8 --max-line-length=120"
 
     - name: Push Project Docker
       if: steps.changes.outputs.dockerfile == 'true'
