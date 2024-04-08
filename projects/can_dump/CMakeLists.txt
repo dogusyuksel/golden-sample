@@ -2,8 +2,8 @@ cmake_minimum_required(VERSION 3.1)
 project(libcanard)
 
 # Libcanard
-include_directories(../../thirparty/libcanard)
-include_directories(../../thirparty/libcanard/drivers/socketcan)
+include_directories(libcanard)
+include_directories(libcanard/drivers/socketcan)
 
 # Compiler configuration - supporting only Clang and GCC
 set(CMAKE_C_FLAGS   "${CMAKE_C_FLAGS}   -std=c99   -Wall -Wextra -Werror -m32 -pedantic -g -O0")
@@ -18,5 +18,5 @@ set(CMAKE_C_FLAGS   "${CMAKE_C_FLAGS}   -DCANARD_INTERNAL=''")
 
 add_executable(can_dumper.exe
                 can_dumper.c
-                ../../thirparty/libcanard/canard.c
-                ../../thirparty/libcanard/drivers/socketcan/socketcan.c)
+                libcanard/canard.c
+                libcanard/drivers/socketcan/socketcan.c)
