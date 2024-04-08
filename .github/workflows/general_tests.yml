@@ -43,29 +43,45 @@ jobs:
         push: false
         provenance: false
 
-    - name: Build Check
+    - name: bitbake Build Check
       run: |
-        ./docker/run_docker.sh ${{ secrets.DOCKER_REPO }}:master "cd bitbake/buildandtest/ && source environment && bitbake buildgcc:do_build ; cat tmp/buildgcc/work/log.do_build && bitbake buildebug:do_build ; cat tmp/buildebug/work/log.do_build"
+        ./docker/run_docker.sh ${{ secrets.DOCKER_REPO }}:master "cd /workspace/bitbake/buildandtest/ && source environment && bitbake buildgcc:do_build ; cat tmp/buildgcc/work/log.do_build && bitbake buildebug:do_build ; cat tmp/buildebug/work/log.do_build"
 
     - name: valgrind Check
       run: |
-        ./docker/run_docker.sh ${{ secrets.DOCKER_REPO }}:master "cd bitbake/buildandtest/ && source environment && bitbake testall ; cat tmp/testall/work/log.do_build"
+        ./docker/run_docker.sh ${{ secrets.DOCKER_REPO }}:master "cd /workspace/bitbake/buildandtest/ && source environment && bitbake testall ; cat tmp/testall/work/log.do_build"
+
+    - name: glibc Build Check
+      run: |
+        ./docker/run_docker.sh ${{ secrets.DOCKER_REPO }}:master "cd /workspace/glibc && make all"
+
+    - name: projects Build Check
+      run: |
+        ./docker/run_docker.sh ${{ secrets.DOCKER_REPO }}:master "cd /workspace/projects && make all"
+
+    - name: can_dump Build Check
+      run: |
+        ./docker/run_docker.sh ${{ secrets.DOCKER_REPO }}:master "cd /workspace/projects/can_dump && ./build.sh"
+
+    - name: json_parser Build Check
+      run: |
+        ./docker/run_docker.sh ${{ secrets.DOCKER_REPO }}:master "cd /workspace/projects/json_parser && ./build.sh"
 
     - name: Dirty Check
       run: |
-        ./docker/run_docker.sh ${{ secrets.DOCKER_REPO }}:master "cd scripts && ./dirty_check.sh"
+        ./docker/run_docker.sh ${{ secrets.DOCKER_REPO }}:master "cd /workspace/scripts && ./dirty_check.sh"
 
     - name: Format Check
       run: |
-        ./docker/run_docker.sh ${{ secrets.DOCKER_REPO }}:master "cd scripts && ./format_check.sh"
+        ./docker/run_docker.sh ${{ secrets.DOCKER_REPO }}:master "cd /workspace/scripts && ./format_check.sh"
 
     - name: SPLint Check
       run: |
-        ./docker/run_docker.sh ${{ secrets.DOCKER_REPO }}:master "cd scripts && ./lint_check.sh"
+        ./docker/run_docker.sh ${{ secrets.DOCKER_REPO }}:master "cd /workspace/scripts && ./lint_check.sh"
 
     - name: Unit Test
       run: |
-        ./docker/run_docker.sh ${{ secrets.DOCKER_REPO }}:master "cd scripts && ./run_unittests.sh"
+        ./docker/run_docker.sh ${{ secrets.DOCKER_REPO }}:master "cd /workspace/scripts && ./run_unittests.sh"
 
     - name: Checkout basic-C-linter
       uses: actions/checkout@v2
@@ -95,7 +111,7 @@ jobs:
     - name: flake8
       run: |
          echo "'isort .' can be executed if needed"
-         ./docker/run_docker.sh ${{ secrets.DOCKER_REPO }}:master "cd /workspace && flake8 --max-line-length=120"
+         ./docker/run_docker.sh ${{ secrets.DOCKER_REPO }}:master "cd /workspace/python && flake8 --max-line-length=120"
 
     - name: Push Project Docker
       if: steps.changes.outputs.dockerfile == 'true'

@@ -7,6 +7,11 @@ ceedling/myproject/build
 python/*/__pycache__/
 executable
 **/CMakeFiles
+**/CMakeCache.txt
+**/*.cmake
+**/cjson
+**/libcanard
+**/can_dump/Makefile
 
 *.log
 **/cache/**
