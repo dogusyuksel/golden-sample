@@ -22,6 +22,7 @@ RUN apt-get update && \
         tree \
         can-utils \
         socat \
+        gcc-multilib g++-multilib \
         splint && \
     apt-get -y clean
 

@@ -6,6 +6,7 @@ ceedling/myproject/build
 *.exe
 python/*/__pycache__/
 executable
+**/CMakeFiles
 
 *.log
 **/cache/**
