@@ -11,7 +11,9 @@ executable
 **/*.cmake
 **/cjson
 **/libcanard
+compile_commands.json
 **/can_dump/Makefile
+hal/*/Makefile
 
 *.log
 **/cache/**

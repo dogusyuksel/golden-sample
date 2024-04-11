@@ -24,6 +24,10 @@ RUN apt-get update && \
         socat \
         cmake \
         gcc-multilib g++-multilib \
+        gcc-arm-none-eabi \
+        binutils-arm-none-eabi \
+        gdb-arm-none-eabi \
+        openocd \
         splint && \
     apt-get -y clean
 

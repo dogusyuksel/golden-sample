@@ -3,5 +3,5 @@ project(mylibrary_project)
 
 # CMake instructions to make the static lib
 
-ADD_LIBRARY( mylibrary STATIC
+add_library( mylibrary STATIC
 		mylibrary.c )
