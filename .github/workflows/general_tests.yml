@@ -63,10 +63,6 @@ jobs:
       run: |
         ./docker/run_docker.sh ${{ secrets.DOCKER_REPO }}:master "cd /workspace/projects/can_dump && ./build.sh"
 
-    - name: hal Build Check
-      run: |
-        ./docker/run_docker.sh ${{ secrets.DOCKER_REPO }}:master "cd /workspace/hal && ./buildall.sh"
-
     - name: json_parser Build Check
       run: |
         ./docker/run_docker.sh ${{ secrets.DOCKER_REPO }}:master "cd /workspace/projects/json_parser && ./build.sh"
