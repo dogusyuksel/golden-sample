@@ -113,8 +113,9 @@ extern "C" {
 #if defined(DBGMCU_CR_DBG_TIM14_STOP)
 #define LL_DBGMCU_APB1_GRP1_TIM14_STOP DBGMCU_CR_DBG_TIM14_STOP /*!< TIM14 counter stopped when core is halted */
 #endif                                                          /* DBGMCU_CR_DBG_TIM14_STOP */
-#define LL_DBGMCU_APB1_GRP1_WWDG_STOP DBGMCU_CR_DBG_WWDG_STOP   /*!< Debug Window Watchdog stopped when Core is halted \
-                                                                 */
+#define LL_DBGMCU_APB1_GRP1_WWDG_STOP                                                                                  \
+    DBGMCU_CR_DBG_WWDG_STOP /*!< Debug Window Watchdog stopped when Core is halted                                     \
+                             */
 #define LL_DBGMCU_APB1_GRP1_IWDG_STOP                                                                                  \
     DBGMCU_CR_DBG_IWDG_STOP /*!< Debug Independent Watchdog stopped when Core is halted */
 #define LL_DBGMCU_APB1_GRP1_I2C1_STOP                                                                                  \

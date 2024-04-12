@@ -500,8 +500,8 @@ void ref_lms_norm_q15(arm_lms_norm_instance_q15 *S, q15_t *pSrc, q15_t *pRef, q1
     q15_t w = 0, in;               /* weight factor and state */
     q15_t x0;                      /* temporary variable to hold input sample */
     q15_t errorXmu, oneByEnergy;   /* Temporary variables to store error and mu product and reciprocal of energy */
-    // q31_t errorXmu;                   				 /* Temporary variables to store error and mu product and reciprocal of
-    // energy */
+    // q31_t errorXmu;                   				 /* Temporary variables to store error and mu product and reciprocal
+    // of energy */
     q15_t postShift; /* Post shift to be applied to weight after reciprocal calculation */
     q31_t coef;      /* Teporary variable for coefficient */
     q31_t acc_l, acc_h;

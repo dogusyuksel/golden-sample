@@ -640,7 +640,7 @@ typedef struct {
     __IO uint32_t DOEPTSIZ; /*!< dev OUT Endpoint Txfer Size                B00h + (ep_num * 20h) + 10h*/
     __IO uint32_t DOEPDMA;  /*!< dev OUT Endpoint DMA Address               B00h + (ep_num * 20h) + 14h*/
     uint32_t Reserved18[2]; /*!< Reserved                                   B00h + (ep_num * 20h) + 18h - B00h + (ep_num
-                               * 20h) + 1Ch*/
+                             * 20h) + 1Ch*/
 } USB_OTG_OUTEndpointTypeDef;
 
 /**
@@ -2732,8 +2732,9 @@ typedef struct {
 #define AFIO_MAPR_SWJ_CFG_RESET 0x00000000U /*!< Full SWJ (JTAG-DP + SW-DP) : Reset State */
 #define AFIO_MAPR_SWJ_CFG_NOJNTRST_Pos (24U)
 #define AFIO_MAPR_SWJ_CFG_NOJNTRST_Msk (0x1UL << AFIO_MAPR_SWJ_CFG_NOJNTRST_Pos) /*!< 0x01000000 */
-#define AFIO_MAPR_SWJ_CFG_NOJNTRST AFIO_MAPR_SWJ_CFG_NOJNTRST_Msk /*!< Full SWJ (JTAG-DP + SW-DP) but without JNTRST   \
-                                                                   */
+#define AFIO_MAPR_SWJ_CFG_NOJNTRST                                                                                     \
+    AFIO_MAPR_SWJ_CFG_NOJNTRST_Msk /*!< Full SWJ (JTAG-DP + SW-DP) but without JNTRST                                  \
+                                    */
 #define AFIO_MAPR_SWJ_CFG_JTAGDISABLE_Pos (25U)
 #define AFIO_MAPR_SWJ_CFG_JTAGDISABLE_Msk (0x1UL << AFIO_MAPR_SWJ_CFG_JTAGDISABLE_Pos) /*!< 0x02000000 */
 #define AFIO_MAPR_SWJ_CFG_JTAGDISABLE AFIO_MAPR_SWJ_CFG_JTAGDISABLE_Msk /*!< JTAG-DP Disabled and SW-DP Enabled */
@@ -13225,8 +13226,9 @@ typedef struct {
 /********************  Bit definition for USB_OTG_DTHRCTL register  ********************/
 #define USB_OTG_DTHRCTL_NONISOTHREN_Pos (0U)
 #define USB_OTG_DTHRCTL_NONISOTHREN_Msk (0x1UL << USB_OTG_DTHRCTL_NONISOTHREN_Pos) /*!< 0x00000001 */
-#define USB_OTG_DTHRCTL_NONISOTHREN USB_OTG_DTHRCTL_NONISOTHREN_Msk /*!< Nonisochronous IN endpoints threshold enable  \
-                                                                     */
+#define USB_OTG_DTHRCTL_NONISOTHREN                                                                                    \
+    USB_OTG_DTHRCTL_NONISOTHREN_Msk /*!< Nonisochronous IN endpoints threshold enable                                  \
+                                     */
 #define USB_OTG_DTHRCTL_ISOTHREN_Pos (1U)
 #define USB_OTG_DTHRCTL_ISOTHREN_Msk (0x1UL << USB_OTG_DTHRCTL_ISOTHREN_Pos) /*!< 0x00000002 */
 #define USB_OTG_DTHRCTL_ISOTHREN USB_OTG_DTHRCTL_ISOTHREN_Msk                /*!< ISO IN endpoint threshold enable */
@@ -13312,8 +13314,9 @@ typedef struct {
 #define USB_OTG_DIEPEACHMSK1_EPDM USB_OTG_DIEPEACHMSK1_EPDM_Msk                /*!< Endpoint disabled interrupt mask */
 #define USB_OTG_DIEPEACHMSK1_TOM_Pos (3U)
 #define USB_OTG_DIEPEACHMSK1_TOM_Msk (0x1UL << USB_OTG_DIEPEACHMSK1_TOM_Pos) /*!< 0x00000008 */
-#define USB_OTG_DIEPEACHMSK1_TOM USB_OTG_DIEPEACHMSK1_TOM_Msk /*!< Timeout condition mask (nonisochronous endpoints)   \
-                                                               */
+#define USB_OTG_DIEPEACHMSK1_TOM                                                                                       \
+    USB_OTG_DIEPEACHMSK1_TOM_Msk /*!< Timeout condition mask (nonisochronous endpoints)                                \
+                                  */
 #define USB_OTG_DIEPEACHMSK1_ITTXFEMSK_Pos (4U)
 #define USB_OTG_DIEPEACHMSK1_ITTXFEMSK_Msk (0x1UL << USB_OTG_DIEPEACHMSK1_ITTXFEMSK_Pos) /*!< 0x00000010 */
 #define USB_OTG_DIEPEACHMSK1_ITTXFEMSK                                                                                 \

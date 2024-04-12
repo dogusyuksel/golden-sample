@@ -2828,8 +2828,8 @@ const q31_t realCoefBQ31[8192] = {
  *
  * \par Description:
  * \par
- * The parameter <code>fftLenReal</code>	Specifies length of RFFT/RIFFT Process. Supported FFT Lengths are 32, 64,
- * 128, 256, 512, 1024, 2048, 4096, 8192. \par The parameter <code>ifftFlagR</code> controls whether a forward or
+ * The parameter <code>fftLenReal</code>	Specifies length of RFFT/RIFFT Process. Supported FFT Lengths are 32,
+ * 64, 128, 256, 512, 1024, 2048, 4096, 8192. \par The parameter <code>ifftFlagR</code> controls whether a forward or
  * inverse transform is computed. Set(=1) ifftFlagR to calculate RIFFT, otherwise RFFT is calculated. \par The parameter
  * <code>bitReverseFlag</code> controls whether output is in normal order or bit reversed order. Set(=1) bitReverseFlag
  * for output to be in normal order otherwise output is in bit reversed order. \par    7 This function also initializes

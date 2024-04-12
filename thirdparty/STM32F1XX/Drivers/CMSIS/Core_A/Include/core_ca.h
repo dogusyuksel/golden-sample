@@ -786,8 +786,9 @@ typedef struct {
     __OM uint32_t DIR; /*!< \brief  Offset: 0x1000( /W) Deactivate Interrupt Register */
 } GICInterface_Type;
 
-#define GICInterface ((GICInterface_Type *)GIC_INTERFACE_BASE) /*!< \brief GIC Interface register set access pointer   \
-                                                                */
+#define GICInterface                                                                                                   \
+    ((GICInterface_Type *)GIC_INTERFACE_BASE) /*!< \brief GIC Interface register set access pointer                    \
+                                               */
 #endif
 
 #if (__TIM_PRESENT == 1U) || defined(DOXYGEN)

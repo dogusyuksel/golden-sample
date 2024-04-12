@@ -964,8 +964,9 @@ typedef void (*pETH_CallbackTypeDef)(ETH_HandleTypeDef *heth); /*!< pointer to a
 /** @defgroup ETH_Pass_Control_Frames ETH Pass Control Frames
  * @{
  */
-#define ETH_PASSCONTROLFRAMES_BLOCKALL 0x00000040U /*!< MAC filters all control frames from reaching the application   \
-                                                    */
+#define ETH_PASSCONTROLFRAMES_BLOCKALL                                                                                 \
+    0x00000040U /*!< MAC filters all control frames from reaching the application                                      \
+                 */
 #define ETH_PASSCONTROLFRAMES_FORWARDALL                                                                               \
     0x00000080U /*!< MAC forwards all control frames to application even if they fail the Address Filter */
 #define ETH_PASSCONTROLFRAMES_FORWARDPASSEDADDRFILTER                                                                  \
@@ -1150,17 +1151,20 @@ typedef void (*pETH_CallbackTypeDef)(ETH_HandleTypeDef *heth); /*!< pointer to a
 /** @defgroup ETH_Transmit_Threshold_Control ETH Transmit Threshold Control
  * @{
  */
-#define ETH_TRANSMITTHRESHOLDCONTROL_64BYTES 0x00000000U  /*!< threshold level of the MTL Transmit FIFO is 64 Bytes */
-#define ETH_TRANSMITTHRESHOLDCONTROL_128BYTES 0x00004000U /*!< threshold level of the MTL Transmit FIFO is 128 Bytes   \
-                                                           */
-#define ETH_TRANSMITTHRESHOLDCONTROL_192BYTES 0x00008000U /*!< threshold level of the MTL Transmit FIFO is 192 Bytes   \
-                                                           */
-#define ETH_TRANSMITTHRESHOLDCONTROL_256BYTES 0x0000C000U /*!< threshold level of the MTL Transmit FIFO is 256 Bytes   \
-                                                           */
-#define ETH_TRANSMITTHRESHOLDCONTROL_40BYTES 0x00010000U  /*!< threshold level of the MTL Transmit FIFO is 40 Bytes */
-#define ETH_TRANSMITTHRESHOLDCONTROL_32BYTES 0x00014000U  /*!< threshold level of the MTL Transmit FIFO is 32 Bytes */
-#define ETH_TRANSMITTHRESHOLDCONTROL_24BYTES 0x00018000U  /*!< threshold level of the MTL Transmit FIFO is 24 Bytes */
-#define ETH_TRANSMITTHRESHOLDCONTROL_16BYTES 0x0001C000U  /*!< threshold level of the MTL Transmit FIFO is 16 Bytes */
+#define ETH_TRANSMITTHRESHOLDCONTROL_64BYTES 0x00000000U /*!< threshold level of the MTL Transmit FIFO is 64 Bytes */
+#define ETH_TRANSMITTHRESHOLDCONTROL_128BYTES                                                                          \
+    0x00004000U /*!< threshold level of the MTL Transmit FIFO is 128 Bytes                                             \
+                 */
+#define ETH_TRANSMITTHRESHOLDCONTROL_192BYTES                                                                          \
+    0x00008000U /*!< threshold level of the MTL Transmit FIFO is 192 Bytes                                             \
+                 */
+#define ETH_TRANSMITTHRESHOLDCONTROL_256BYTES                                                                          \
+    0x0000C000U                                          /*!< threshold level of the MTL Transmit FIFO is 256 Bytes    \
+                                                          */
+#define ETH_TRANSMITTHRESHOLDCONTROL_40BYTES 0x00010000U /*!< threshold level of the MTL Transmit FIFO is 40 Bytes */
+#define ETH_TRANSMITTHRESHOLDCONTROL_32BYTES 0x00014000U /*!< threshold level of the MTL Transmit FIFO is 32 Bytes */
+#define ETH_TRANSMITTHRESHOLDCONTROL_24BYTES 0x00018000U /*!< threshold level of the MTL Transmit FIFO is 24 Bytes */
+#define ETH_TRANSMITTHRESHOLDCONTROL_16BYTES 0x0001C000U /*!< threshold level of the MTL Transmit FIFO is 16 Bytes */
 /**
  * @}
  */

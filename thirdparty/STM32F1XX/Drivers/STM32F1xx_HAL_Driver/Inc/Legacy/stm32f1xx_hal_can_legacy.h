@@ -367,13 +367,15 @@ typedef struct {
     ((uint32_t)((TSR_REGISTER_INDEX << 8U) | CAN_TSR_TME2_BIT_POSITION)) /*!< Transmit mailbox 0 empty flag */
 
 /* Receive Flags */
-#define CAN_FLAG_FF0 ((uint32_t)((RF0R_REGISTER_INDEX << 8U) | CAN_RF0R_FF0_BIT_POSITION))   /*!< FIFO 0 Full flag    */
-#define CAN_FLAG_FOV0 ((uint32_t)((RF0R_REGISTER_INDEX << 8U) | CAN_RF0R_FOV0_BIT_POSITION)) /*!< FIFO 0 Overrun flag  \
-                                                                                              */
+#define CAN_FLAG_FF0 ((uint32_t)((RF0R_REGISTER_INDEX << 8U) | CAN_RF0R_FF0_BIT_POSITION)) /*!< FIFO 0 Full flag    */
+#define CAN_FLAG_FOV0                                                                                                  \
+    ((uint32_t)((RF0R_REGISTER_INDEX << 8U) | CAN_RF0R_FOV0_BIT_POSITION)) /*!< FIFO 0 Overrun flag                    \
+                                                                            */
 
-#define CAN_FLAG_FF1 ((uint32_t)((RF1R_REGISTER_INDEX << 8U) | CAN_RF1R_FF1_BIT_POSITION))   /*!< FIFO 1 Full flag    */
-#define CAN_FLAG_FOV1 ((uint32_t)((RF1R_REGISTER_INDEX << 8U) | CAN_RF1R_FOV1_BIT_POSITION)) /*!< FIFO 1 Overrun flag  \
-                                                                                              */
+#define CAN_FLAG_FF1 ((uint32_t)((RF1R_REGISTER_INDEX << 8U) | CAN_RF1R_FF1_BIT_POSITION)) /*!< FIFO 1 Full flag    */
+#define CAN_FLAG_FOV1                                                                                                  \
+    ((uint32_t)((RF1R_REGISTER_INDEX << 8U) | CAN_RF1R_FOV1_BIT_POSITION)) /*!< FIFO 1 Overrun flag                    \
+                                                                            */
 
 /* Operating Mode Flags */
 #define CAN_FLAG_WKU ((uint32_t)((MSR_REGISTER_INDEX << 8U) | CAN_MSR_WKU_BIT_POSITION)) /*!< Wake up flag */

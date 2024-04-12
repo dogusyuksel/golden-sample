@@ -3359,11 +3359,11 @@ static const float32_t realCoefB[8192] = {
  *
  * \par Description:
  * \par
- * The parameter <code>fftLenReal</code>	Specifies length of RFFT/RIFFT Process. Supported FFT Lengths are 128, 512,
- * 2048. \par The parameter <code>ifftFlagR</code> controls whether a forward or inverse transform is computed. Set(=1)
- * ifftFlagR to calculate RIFFT, otherwise RFFT is calculated. \par The parameter <code>bitReverseFlag</code> controls
- * whether output is in normal order or bit reversed order. Set(=1) bitReverseFlag for output to be in normal order
- * otherwise output is in bit reversed order. \par This function also initializes Twiddle factor table.
+ * The parameter <code>fftLenReal</code>	Specifies length of RFFT/RIFFT Process. Supported FFT Lengths are 128,
+ * 512, 2048. \par The parameter <code>ifftFlagR</code> controls whether a forward or inverse transform is computed.
+ * Set(=1) ifftFlagR to calculate RIFFT, otherwise RFFT is calculated. \par The parameter <code>bitReverseFlag</code>
+ * controls whether output is in normal order or bit reversed order. Set(=1) bitReverseFlag for output to be in normal
+ * order otherwise output is in bit reversed order. \par This function also initializes Twiddle factor table.
  */
 
 /**

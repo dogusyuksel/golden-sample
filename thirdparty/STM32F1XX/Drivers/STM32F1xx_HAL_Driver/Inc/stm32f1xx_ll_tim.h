@@ -740,8 +740,9 @@ typedef struct {
 /** @defgroup TIM_LL_EC_CLOCKSOURCE Clock Source
  * @{
  */
-#define LL_TIM_CLOCKSOURCE_INTERNAL 0x00000000U /*!< The timer is clocked by the internal clock provided from the RCC  \
-                                                 */
+#define LL_TIM_CLOCKSOURCE_INTERNAL                                                                                    \
+    0x00000000U /*!< The timer is clocked by the internal clock provided from the RCC                                  \
+                 */
 #define LL_TIM_CLOCKSOURCE_EXT_MODE1                                                                                   \
     (TIM_SMCR_SMS_2 | TIM_SMCR_SMS_1 |                                                                                 \
      TIM_SMCR_SMS_0) /*!< Counter counts at each rising or falling edge on a selected input*/

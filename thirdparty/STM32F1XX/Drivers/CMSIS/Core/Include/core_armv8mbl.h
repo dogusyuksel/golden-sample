@@ -976,8 +976,9 @@ typedef struct {
     (1UL << CoreDebug_DHCSR_S_RESTART_ST_Pos) /*!< CoreDebug DHCSR: S_RESTART_ST Mask */
 
 #define CoreDebug_DHCSR_S_RESET_ST_Pos 25U /*!< CoreDebug DHCSR: S_RESET_ST Position */
-#define CoreDebug_DHCSR_S_RESET_ST_Msk (1UL << CoreDebug_DHCSR_S_RESET_ST_Pos) /*!< CoreDebug DHCSR: S_RESET_ST Mask   \
-                                                                                */
+#define CoreDebug_DHCSR_S_RESET_ST_Msk                                                                                 \
+    (1UL << CoreDebug_DHCSR_S_RESET_ST_Pos) /*!< CoreDebug DHCSR: S_RESET_ST Mask                                      \
+                                             */
 
 #define CoreDebug_DHCSR_S_RETIRE_ST_Pos 24U /*!< CoreDebug DHCSR: S_RETIRE_ST Position */
 #define CoreDebug_DHCSR_S_RETIRE_ST_Msk                                                                                \
@@ -996,8 +997,9 @@ typedef struct {
 #define CoreDebug_DHCSR_S_REGRDY_Msk (1UL << CoreDebug_DHCSR_S_REGRDY_Pos) /*!< CoreDebug DHCSR: S_REGRDY Mask */
 
 #define CoreDebug_DHCSR_C_MASKINTS_Pos 3U /*!< CoreDebug DHCSR: C_MASKINTS Position */
-#define CoreDebug_DHCSR_C_MASKINTS_Msk (1UL << CoreDebug_DHCSR_C_MASKINTS_Pos) /*!< CoreDebug DHCSR: C_MASKINTS Mask   \
-                                                                                */
+#define CoreDebug_DHCSR_C_MASKINTS_Msk                                                                                 \
+    (1UL << CoreDebug_DHCSR_C_MASKINTS_Pos) /*!< CoreDebug DHCSR: C_MASKINTS Mask                                      \
+                                             */
 
 #define CoreDebug_DHCSR_C_STEP_Pos 2U                                  /*!< CoreDebug DHCSR: C_STEP Position */
 #define CoreDebug_DHCSR_C_STEP_Msk (1UL << CoreDebug_DHCSR_C_STEP_Pos) /*!< CoreDebug DHCSR: C_STEP Mask */
@@ -1006,8 +1008,9 @@ typedef struct {
 #define CoreDebug_DHCSR_C_HALT_Msk (1UL << CoreDebug_DHCSR_C_HALT_Pos) /*!< CoreDebug DHCSR: C_HALT Mask */
 
 #define CoreDebug_DHCSR_C_DEBUGEN_Pos 0U /*!< CoreDebug DHCSR: C_DEBUGEN Position */
-#define CoreDebug_DHCSR_C_DEBUGEN_Msk (1UL /*<< CoreDebug_DHCSR_C_DEBUGEN_Pos*/) /*!< CoreDebug DHCSR: C_DEBUGEN Mask  \
-                                                                                  */
+#define CoreDebug_DHCSR_C_DEBUGEN_Msk                                                                                  \
+    (1UL /*<< CoreDebug_DHCSR_C_DEBUGEN_Pos*/) /*!< CoreDebug DHCSR: C_DEBUGEN Mask                                    \
+                                                */
 
 /* Debug Core Register Selector Register Definitions */
 #define CoreDebug_DCRSR_REGWnR_Pos 16U                                 /*!< CoreDebug DCRSR: REGWnR Position */
@@ -1021,8 +1024,9 @@ typedef struct {
 #define CoreDebug_DEMCR_DWTENA_Msk (1UL << CoreDebug_DEMCR_DWTENA_Pos) /*!< CoreDebug DEMCR: DWTENA Mask */
 
 #define CoreDebug_DEMCR_VC_HARDERR_Pos 10U /*!< CoreDebug DEMCR: VC_HARDERR Position */
-#define CoreDebug_DEMCR_VC_HARDERR_Msk (1UL << CoreDebug_DEMCR_VC_HARDERR_Pos) /*!< CoreDebug DEMCR: VC_HARDERR Mask   \
-                                                                                */
+#define CoreDebug_DEMCR_VC_HARDERR_Msk                                                                                 \
+    (1UL << CoreDebug_DEMCR_VC_HARDERR_Pos) /*!< CoreDebug DEMCR: VC_HARDERR Mask                                      \
+                                             */
 
 #define CoreDebug_DEMCR_VC_CORERESET_Pos 0U /*!< CoreDebug DEMCR: VC_CORERESET Position */
 #define CoreDebug_DEMCR_VC_CORERESET_Msk                                                                               \

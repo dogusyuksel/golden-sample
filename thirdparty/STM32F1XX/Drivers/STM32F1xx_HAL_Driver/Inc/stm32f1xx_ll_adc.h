@@ -1024,16 +1024,19 @@ typedef struct {
 /** @defgroup ADC_LL_EC_CHANNEL_SAMPLINGTIME  Channel - Sampling time
  * @{
  */
-#define LL_ADC_SAMPLINGTIME_1CYCLE_5 0x00000000U                             /*!< Sampling time 1.5 ADC clock cycle */
-#define LL_ADC_SAMPLINGTIME_7CYCLES_5 (ADC_SMPR2_SMP0_0)                     /*!< Sampling time 7.5 ADC clock cycles */
-#define LL_ADC_SAMPLINGTIME_13CYCLES_5 (ADC_SMPR2_SMP0_1)                    /*!< Sampling time 13.5 ADC clock cycles */
-#define LL_ADC_SAMPLINGTIME_28CYCLES_5 (ADC_SMPR2_SMP0_1 | ADC_SMPR2_SMP0_0) /*!< Sampling time 28.5 ADC clock cycles  \
-                                                                              */
-#define LL_ADC_SAMPLINGTIME_41CYCLES_5 (ADC_SMPR2_SMP0_2)                    /*!< Sampling time 41.5 ADC clock cycles */
-#define LL_ADC_SAMPLINGTIME_55CYCLES_5 (ADC_SMPR2_SMP0_2 | ADC_SMPR2_SMP0_0) /*!< Sampling time 55.5 ADC clock cycles  \
-                                                                              */
-#define LL_ADC_SAMPLINGTIME_71CYCLES_5 (ADC_SMPR2_SMP0_2 | ADC_SMPR2_SMP0_1) /*!< Sampling time 71.5 ADC clock cycles  \
-                                                                              */
+#define LL_ADC_SAMPLINGTIME_1CYCLE_5 0x00000000U          /*!< Sampling time 1.5 ADC clock cycle */
+#define LL_ADC_SAMPLINGTIME_7CYCLES_5 (ADC_SMPR2_SMP0_0)  /*!< Sampling time 7.5 ADC clock cycles */
+#define LL_ADC_SAMPLINGTIME_13CYCLES_5 (ADC_SMPR2_SMP0_1) /*!< Sampling time 13.5 ADC clock cycles */
+#define LL_ADC_SAMPLINGTIME_28CYCLES_5                                                                                 \
+    (ADC_SMPR2_SMP0_1 | ADC_SMPR2_SMP0_0)                 /*!< Sampling time 28.5 ADC clock cycles                     \
+                                                           */
+#define LL_ADC_SAMPLINGTIME_41CYCLES_5 (ADC_SMPR2_SMP0_2) /*!< Sampling time 41.5 ADC clock cycles */
+#define LL_ADC_SAMPLINGTIME_55CYCLES_5                                                                                 \
+    (ADC_SMPR2_SMP0_2 | ADC_SMPR2_SMP0_0) /*!< Sampling time 55.5 ADC clock cycles                                     \
+                                           */
+#define LL_ADC_SAMPLINGTIME_71CYCLES_5                                                                                 \
+    (ADC_SMPR2_SMP0_2 | ADC_SMPR2_SMP0_1) /*!< Sampling time 71.5 ADC clock cycles                                     \
+                                           */
 #define LL_ADC_SAMPLINGTIME_239CYCLES_5                                                                                \
     (ADC_SMPR2_SMP0_2 | ADC_SMPR2_SMP0_1 | ADC_SMPR2_SMP0_0) /*!< Sampling time 239.5 ADC clock cycles */
 /**
@@ -1414,8 +1417,9 @@ typedef struct {
 /*       equivalent number of CPU cycles, by taking into account              */
 /*       ratio of CPU clock versus ADC clock prescalers.                      */
 /* Unit: ADC clock cycles.                                                    */
-#define LL_ADC_DELAY_DISABLE_CALIB_ADC_CYCLES (2U) /*!< Delay required between ADC disable and ADC calibration start   \
-                                                    */
+#define LL_ADC_DELAY_DISABLE_CALIB_ADC_CYCLES                                                                          \
+    (2U) /*!< Delay required between ADC disable and ADC calibration start                                             \
+          */
 
 /* Delay required between end of ADC Enable and the start of ADC calibration. */
 /* Note: On this STM32 series, a minimum number of ADC clock cycles            */

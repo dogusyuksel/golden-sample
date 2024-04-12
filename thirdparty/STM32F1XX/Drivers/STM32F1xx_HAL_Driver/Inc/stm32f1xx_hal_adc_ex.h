@@ -54,7 +54,8 @@ extern "C" {
  * group.
  */
 typedef struct {
-    uint32_t InjectedChannel;      /*!< Selection of ADC channel to configure
+    uint32_t
+        InjectedChannel;           /*!< Selection of ADC channel to configure
                                         This parameter can be a value of @ref ADC_channels
                                         Note: Depending on devices, some channels may not be available on package pins. Refer
                                       to device datasheet for channels availability.      Note: On STM32F1 devices with several

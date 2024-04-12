@@ -53,8 +53,8 @@ typedef struct {
     uint32_t DataAlign;    /*!< Specifies ADC data alignment to right (MSB on register bit 11 and LSB on register bit 0)
                               (default setting)    or to left (if regular group: MSB on register bit 15 and LSB on register
                               bit 4, if injected group (MSB kept as signed value due to potential negative value after
-                              offset application): MSB on register bit 14 and LSB on register bit 3).    This parameter can be
-                              a value of @ref ADC_Data_align */
+                              offset application): MSB on register bit 14 and LSB on register bit 3).    This parameter can
+                              be    a value of @ref ADC_Data_align */
     uint32_t ScanConvMode; /*!< Configures the sequencer of regular and injected groups.
                                 This parameter can be associated to parameter 'DiscontinuousConvMode' to have main
                               sequence subdivided in successive parts. If disabled: Conversion is performed in single
@@ -100,15 +100,15 @@ typedef struct {
  *         ADC can be either disabled or enabled without conversion on going on regular group.
  */
 typedef struct {
-    uint32_t
-        Channel;           /*!< Specifies the channel to configure into ADC regular group.
+    uint32_t Channel;      /*!< Specifies the channel to configure into ADC regular group.
                                 This parameter can be a value of @ref ADC_channels
-                                Note: Depending on devices, some channels may not be available on package pins. Refer to device
-                              datasheet for channels availability.           Note: On STM32F1 devices with several ADC: Only ADC1 can access
-                              internal measurement channels (VrefInt/TempSensor)           Note: On STM32F10xx8 and STM32F10xxB devices: A
-                              low-amplitude voltage glitch may be generated (on ADC input 0) on the PA0 pin, when the ADC is
-                              converting with injection trigger.           It is advised to distribute the analog channels so that Channel 0
-                              is configured as an injected channel.           Refer to errata sheet of these devices for more details. */
+                                Note: Depending on devices, some channels may not be available on package pins. Refer to
+                              device      datasheet for channels availability.           Note: On STM32F1 devices with several
+                              ADC: Only ADC1 can access      internal measurement channels (VrefInt/TempSensor)           Note: On
+                              STM32F10xx8 and STM32F10xxB devices: A      low-amplitude voltage glitch may be generated (on ADC
+                              input 0) on the PA0 pin, when the ADC is      converting with injection trigger.           It is
+                              advised to distribute the analog channels so that Channel 0      is configured as an injected
+                              channel.           Refer to errata sheet of these devices for more details. */
     uint32_t Rank;         /*!< Specifies the rank in the regular group sequencer
                                 This parameter can be a value of @ref ADC_regular_rank
                                 Note: In case of need to disable a channel or change order of conversion sequencer, rank
@@ -173,9 +173,10 @@ typedef struct {
 #define HAL_ADC_STATE_INJ_BUSY                                                                                         \
     0x00001000U /*!< A conversion on group injected is ongoing or can occur (either by auto-injection mode,            \
                     external trigger, low power auto power-on, multimode ADC master control) */
-#define HAL_ADC_STATE_INJ_EOC 0x00002000U   /*!< Conversion data available on group injected */
-#define HAL_ADC_STATE_INJ_JQOVF 0x00004000U /*!< Not available on STM32F1 device: Injected queue overflow occurrence   \
-                                             */
+#define HAL_ADC_STATE_INJ_EOC 0x00002000U /*!< Conversion data available on group injected */
+#define HAL_ADC_STATE_INJ_JQOVF                                                                                        \
+    0x00004000U /*!< Not available on STM32F1 device: Injected queue overflow occurrence                               \
+                 */
 
 /* States of ADC analog watchdogs */
 #define HAL_ADC_STATE_AWD1 0x00010000U /*!< Out-of-window occurrence of analog watchdog 1 */
@@ -210,7 +211,7 @@ typedef struct __ADC_HandleTypeDef {
     void (*LevelOutOfWindowCallback)(struct __ADC_HandleTypeDef *hadc); /*!< ADC analog watchdog 1 callback */
     void (*ErrorCallback)(struct __ADC_HandleTypeDef *hadc);            /*!< ADC error callback */
     void (*InjectedConvCpltCallback)(struct __ADC_HandleTypeDef *hadc);
-        /*!< ADC group injected conversion complete callback */  /*!< ADC end of sampling callback */
+    /*!< ADC group injected conversion complete callback */      /*!< ADC end of sampling callback */
     void (*MspInitCallback)(struct __ADC_HandleTypeDef *hadc);   /*!< ADC Msp Init callback */
     void (*MspDeInitCallback)(struct __ADC_HandleTypeDef *hadc); /*!< ADC Msp DeInit callback */
 #endif                                                           /* USE_HAL_ADC_REGISTER_CALLBACKS */
