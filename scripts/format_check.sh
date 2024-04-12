@@ -2,7 +2,7 @@
 
 files=$(find ./../ -name '*.c' -o -name '*.cpp' -o -name '*.h')
 while IFS= read -r line; do
-    if [[ "$line" != *"test_"* ]]; then
+    if [[ "$line" != *"test_"* ]] && [[ "$line" != *"thirdparty"* ]]; then
         clang-format -verbose -i -style=file --Werror $line
     fi
 done <<< "$files"

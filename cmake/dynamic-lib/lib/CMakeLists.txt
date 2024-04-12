@@ -3,5 +3,5 @@ project(mylibrary_project)
 
 # CMake instructions to make the static lib
 
-ADD_LIBRARY( mylibrary SHARED
+add_library( mylibrary SHARED
 		mylibrary.c )

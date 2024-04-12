@@ -23,7 +23,10 @@ RUN apt-get update && \
         can-utils \
         socat \
         cmake \
-        gcc-multilib g++-multilib \
+        gcc-multilib \
+        g++-multilib \
+        software-properties-common \
+        wget \
         splint && \
     apt-get -y clean
 
@@ -42,6 +45,10 @@ RUN git clone git://git.openembedded.org/bitbake
 ENV PATH="${PATH}:/bitbake/bin"
 ENV PYTHONPATH="${PYTHONPATH}:/bitbake/lib"
 RUN pip install -r bitbake/toaster-requirements.txt
+
+RUN wget https://developer.arm.com/-/media/Files/downloads/gnu-rm/10.3-2021.10/gcc-arm-none-eabi-10.3-2021.10-x86_64-linux.tar.bz2 && \
+    tar -xf gcc-arm-none-eabi-10.3-2021.10-x86_64-linux.tar.bz2
+ENV PATH="/gcc-arm-none-eabi-10.3-2021.10/bin:${PATH}"
 
 CMD ["/bin/bash"]
 
