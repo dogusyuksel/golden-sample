@@ -56,9 +56,9 @@ target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE SYSTEM
     ../../thirdparty/STM32F1XX/Drivers/STM32F1xx_HAL_Driver/Inc
     ../../thirdparty/STM32F1XX/STM32F1xx_HAL_Driver/Inc/Legacy
     ../../thirdparty/STM32F1XX/CMSIS/Device/ST/STM32F1xx/Include
-    ../../thirdparty/STM32F1XX/Drivers/CMSIS/Device/ST/STM32F1xx/Include
-    ../../thirdparty/STM32F1XX/Drivers/CMSIS/Core/Include
-    ../../thirdparty/STM32F1XX/CMSIS/Include
+    ../../thirdparty/STM32F1XX/Drivers/cmsis-header-stm32/stm32f1xx/Include
+    ../../thirdparty/STM32F1XX/Drivers/CMSIS_5/CMSIS/Core/Include
+    ../../thirdparty/STM32F1XX/CMSIS_5/CMSIS/Include
 )
 
 target_compile_definitions(${CMAKE_PROJECT_NAME} PRIVATE SYSTEM
