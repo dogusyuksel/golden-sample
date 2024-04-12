@@ -27,6 +27,10 @@ enable_language(C ASM)
 project(${CMAKE_PROJECT_NAME})
 message("Build type: " ${CMAKE_BUILD_TYPE})
 
+file(GLOB free_rtos_all
+     "../../thirdparty/FreeRTOS/*.c"
+)
+
 # Create an executable object type
 add_executable(${CMAKE_PROJECT_NAME}
     src/main.c
@@ -49,6 +53,9 @@ add_executable(${CMAKE_PROJECT_NAME}
     ../../thirdparty/STM32F1XX/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash_ex.c
     ../../thirdparty/STM32F1XX/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_exti.c
     ../../thirdparty/STM32F1XX/startup_stm32f103xb.s
+    ../../thirdparty/FreeRTOS/portable/GCC/ARM_CM3/port.c
+    ../../thirdparty/FreeRTOS/portable/MemMang/heap_3.c
+    ${free_rtos_all}
 )
 
 target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE SYSTEM
@@ -59,6 +66,8 @@ target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE SYSTEM
     ../../thirdparty/STM32F1XX/Drivers/cmsis-header-stm32/stm32f1xx/Include
     ../../thirdparty/STM32F1XX/Drivers/CMSIS_5/CMSIS/Core/Include
     ../../thirdparty/STM32F1XX/CMSIS_5/CMSIS/Include
+    ../../thirdparty/FreeRTOS/include
+    ../../thirdparty/FreeRTOS/portable/GCC/ARM_CM3
 )
 
 target_compile_definitions(${CMAKE_PROJECT_NAME} PRIVATE SYSTEM
