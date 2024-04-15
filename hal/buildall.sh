@@ -14,7 +14,6 @@ while IFS= read -r line; do
     cmake $dirname/ -B $dirname/build/
     make -C $dirname/build clean
     make -C $dirname/build all
-    cd ..
 done <<< "$files"
 
 exit 0
