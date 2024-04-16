@@ -1,6 +1,11 @@
 #include "stm32f1xx_it.h"
 #include "main.h"
 
+/* External variables --------------------------------------------------------*/
+extern DMA_HandleTypeDef hdma_adc1;
+extern DMA_HandleTypeDef hdma_usart3_rx;
+extern UART_HandleTypeDef huart3;
+
 /******************************************************************************/
 /*           Cortex-M3 Processor Interruption and Exception Handlers          */
 /******************************************************************************/
@@ -72,6 +77,21 @@ void SysTick_Handler(void) { HAL_IncTick(); }
 /******************************************************************************/
 
 /**
- * @brief This function handles EXTI line[9:5] interrupts.
+ * @brief This function handles DMA1 channel1 global interrupt.
  */
-void EXTI9_5_IRQHandler(void) { HAL_GPIO_EXTI_IRQHandler(MCU_IN1_Pin); }
+void DMA1_Channel1_IRQHandler(void) { HAL_DMA_IRQHandler(&hdma_adc1); }
+
+/**
+ * @brief This function handles DMA1 channel3 global interrupt.
+ */
+void DMA1_Channel3_IRQHandler(void) { HAL_DMA_IRQHandler(&hdma_usart3_rx); }
+
+/**
+ * @brief This function handles USART3 global interrupt.
+ */
+void USART3_IRQHandler(void) {
+    HAL_UART_IRQHandler(&huart3);
+
+    uint8_t readbyte = (uint8_t)huart3.Instance->DR;
+    HAL_UART_Transmit(&huart3, (uint8_t *)&readbyte, 1, 5);
+}

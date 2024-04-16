@@ -11,13 +11,6 @@ extern "C" {
 /* Exported functions prototypes ---------------------------------------------*/
 void Error_Handler(void);
 
-/* Private defines -----------------------------------------------------------*/
-#define MCU_IN1_Pin GPIO_PIN_7
-#define MCU_IN1_GPIO_Port GPIOA
-#define MCU_IN1_EXTI_IRQn EXTI9_5_IRQn
-#define SENSE_LED_A_Pin GPIO_PIN_13
-#define SENSE_LED_A_GPIO_Port GPIOB
-
 #ifdef __cplusplus
 }
 #endif
