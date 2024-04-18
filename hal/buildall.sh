@@ -19,6 +19,10 @@ if [ ! -d "../thirdparty/FreeRTOS" ]; then
 fi
 
 
+if [ ! -d "../thirdparty/openocd" ]; then
+    git clone https://github.com/arduino/OpenOCD.git ../thirdparty/openocd
+fi
+
 files=$(find . -name '*' -type d -maxdepth 1 -mindepth 1)
 while IFS= read -r line; do
     dirname=$(basename "$line")

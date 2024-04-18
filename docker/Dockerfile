@@ -27,6 +27,9 @@ RUN apt-get update && \
         g++-multilib \
         software-properties-common \
         wget \
+        openocd \
+        stlink-tools \
+        gdb-multiarch \
         splint && \
     apt-get -y clean
 

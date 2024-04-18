@@ -19,7 +19,7 @@ if(NOT CMAKE_BUILD_TYPE)
 endif()
 
 # Set the project name
-set(CMAKE_PROJECT_NAME TIM_RTC_RCC)
+set(CMAKE_PROJECT_NAME TIM_RTC_RCC_PLL)
 
 # Include toolchain file
 include("../../thirdparty/STM32F1XX/gcc-arm-none-eabi.cmake")
