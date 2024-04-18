@@ -232,3 +232,17 @@ I2C_MASTER
 2. Then goto Configuration -> I2C -> Parameter Setting
 3. Make config especially Speed
 4. Then generate the code.
+
+
+
+NOTES
+------------------------
+
+check this link: https://www.youtube.com/watch?v=_1u7IOnivnM
+
+If the chip is from China, then edit the file stm32f1x.cfg like
+
+https://github.com/arduino/OpenOCD/blob/master/tcl/target/stm32f1x.cfg#L34
+
+this line can be start with 2
+or directly make it 0, not to check chip ID at all

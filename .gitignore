@@ -16,6 +16,7 @@ compile_commands.json
 hal/*/Makefile
 hal/*/build/
 thirdparty/FreeRTOS/
+thirdparty/openocd/
 thirdparty/STM32F1XX/Drivers/CMSIS_5/
 thirdparty/STM32F1XX/Drivers/STM32F1xx_HAL_Driver/
 thirdparty/STM32F1XX/Drivers/cmsis-header-stm32/
