@@ -30,6 +30,8 @@ RUN apt-get update && \
         openocd \
         stlink-tools \
         gdb-multiarch \
+        usbutils \
+        libusb-1.0-0-dev \
         splint && \
     apt-get -y clean
 

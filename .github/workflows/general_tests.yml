@@ -85,7 +85,11 @@ jobs:
 
     - name: hal Build Check
       run: |
-        ./docker/run_docker.sh ${{ secrets.DOCKER_REPO }}:master "cd /workspace/hal && ./buildall.sh"
+        ./docker/run_docker.sh ${{ secrets.DOCKER_REPO }}:master "cd /workspace/hal && ./download_repos.sh && ./buildall.sh && ./cleanall.sh"
+
+    - name: stlink check
+      run: |
+        ./docker/run_docker.sh ${{ secrets.DOCKER_REPO }}:master "st-info  --version"
 
     - name: Checkout basic-C-linter
       uses: actions/checkout@v2
