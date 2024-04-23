@@ -15,11 +15,13 @@ compile_commands.json
 **/can_dump/Makefile
 hal/*/Makefile
 hal/*/build/
+rtos/*/Makefile
+rtos/*/build/
 thirdparty/FreeRTOS/
 thirdparty/openocd/
-thirdparty/STM32F1XX/Drivers/CMSIS_5/
-thirdparty/STM32F1XX/Drivers/STM32F1xx_HAL_Driver/
-thirdparty/STM32F1XX/Drivers/cmsis-header-stm32/
+thirdparty/CMSIS_5/
+thirdparty/STM32L4XX_HAL/
+thirdparty/cmsis-header-stm32/
 
 *.log
 **/cache/**
