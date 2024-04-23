@@ -6,14 +6,11 @@
 void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
 
-void dummy_function(void)
-{
-    HAL_GPIO_TogglePin(green_led_GPIO_Port, green_led_Pin);
-}
+void dummy_function(void) { HAL_GPIO_TogglePin(green_led_GPIO_Port, green_led_Pin); }
 
 void mytask(void *data) {
     (void)data;
-    while(1) {
+    while (1) {
         vTaskDelay(pdMS_TO_TICKS(5000));
         dummy_function();
     }
