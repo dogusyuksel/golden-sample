@@ -1,6 +1,9 @@
 #include "stm32l4xx_it.h"
 #include "main.h"
 
+/* External variables --------------------------------------------------------*/
+extern TIM_HandleTypeDef htim1;
+
 /******************************************************************************/
 /*           Cortex-M4 Processor Interruption and Exception Handlers          */
 /******************************************************************************/
@@ -45,9 +48,24 @@ void UsageFault_Handler(void) {
 }
 
 /**
+ * @brief This function handles System service call via SWI instruction.
+ */
+void SVC_Handler(void) {}
+
+/**
  * @brief This function handles Debug monitor.
  */
 void DebugMon_Handler(void) {}
+
+/**
+ * @brief This function handles Pendable request for system service.
+ */
+void PendSV_Handler(void) {}
+
+/**
+ * @brief This function handles System tick timer.
+ */
+void SysTick_Handler(void) {}
 
 /******************************************************************************/
 /* STM32L4xx Peripheral Interrupt Handlers                                    */
@@ -57,6 +75,11 @@ void DebugMon_Handler(void) {}
 /******************************************************************************/
 
 /**
+ * @brief This function handles TIM1 update interrupt and TIM16 global interrupt.
+ */
+void TIM1_UP_TIM16_IRQHandler(void) { HAL_TIM_IRQHandler(&htim1); }
+
+/**
  * @brief This function handles EXTI line[15:10] interrupts.
  */
-void EXTI15_10_IRQHandler(void) { HAL_GPIO_EXTI_IRQHandler(blue_button_Pin); }
+void EXTI15_10_IRQHandler(void) { HAL_GPIO_EXTI_IRQHandler(B1_Pin); }

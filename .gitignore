@@ -8,7 +8,7 @@ python/*/__pycache__/
 executable
 **/CMakeFiles
 **/CMakeCache.txt
-**/*.cmake
+**/cmake_install.cmake
 **/cjson
 **/libcanard
 compile_commands.json

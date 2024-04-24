@@ -279,3 +279,4 @@ vTaskStartScheduler();
 
     - and find a suitable FreeRTOSConfig.h and put it in "inc"
     - and remove some functions from it source externed in the freertos config
+    - the most important thing is system clock will not be systick, use a TIM for that
