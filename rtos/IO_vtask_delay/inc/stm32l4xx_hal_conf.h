@@ -1,4 +1,3 @@
-/* Define to prevent recursive inclusion -------------------------------------*/
 #ifndef STM32L4xx_HAL_CONF_H
 #define STM32L4xx_HAL_CONF_H
 
@@ -42,7 +41,7 @@ extern "C" {
 /*#define HAL_OPAMP_MODULE_ENABLED   */
 /*#define HAL_OSPI_MODULE_ENABLED   */
 /*#define HAL_OSPI_MODULE_ENABLED   */
-/*#define HAL_PCD_MODULE_ENABLED   */
+#define HAL_PCD_MODULE_ENABLED
 /*#define HAL_PKA_MODULE_ENABLED   */
 /*#define HAL_QSPI_MODULE_ENABLED   */
 /*#define HAL_QSPI_MODULE_ENABLED   */
@@ -55,9 +54,9 @@ extern "C" {
 /*#define HAL_SPI_MODULE_ENABLED   */
 /*#define HAL_SRAM_MODULE_ENABLED   */
 /*#define HAL_SWPMI_MODULE_ENABLED   */
-/*#define HAL_TIM_MODULE_ENABLED   */
+#define HAL_TIM_MODULE_ENABLED
 /*#define HAL_TSC_MODULE_ENABLED   */
-/*#define HAL_UART_MODULE_ENABLED   */
+#define HAL_UART_MODULE_ENABLED
 /*#define HAL_USART_MODULE_ENABLED   */
 /*#define HAL_WWDG_MODULE_ENABLED   */
 /*#define HAL_EXTI_MODULE_ENABLED   */
@@ -149,8 +148,8 @@ extern "C" {
  *        frequency.
  */
 #if !defined(EXTERNAL_SAI2_CLOCK_VALUE)
-#define EXTERNAL_SAI2_CLOCK_VALUE 48000U /*!< Value of the SAI2 External clock source in Hz*/
-#endif                                   /* EXTERNAL_SAI2_CLOCK_VALUE */
+#define EXTERNAL_SAI2_CLOCK_VALUE 2097000U /*!< Value of the SAI2 External clock source in Hz*/
+#endif                                     /* EXTERNAL_SAI2_CLOCK_VALUE */
 
 /* Tip: To avoid modifying this file each time you need to use different HSE,
    ===  you can define the HSE value in your toolchain compiler preprocessor. */
