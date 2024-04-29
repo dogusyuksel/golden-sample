@@ -35,7 +35,7 @@ project(${CMAKE_PROJECT_NAME})
 message("Build type: " ${CMAKE_BUILD_TYPE})
 
 file(GLOB free_rtos_all
-     "../../thirdparty/FreeRTOS/*.c"
+     "../../thirdparty/FreeRTOS-Kernel/*.c"
 )
 
 add_executable(${CMAKE_PROJECT_NAME}
@@ -69,8 +69,8 @@ add_executable(${CMAKE_PROJECT_NAME}
     ../../thirdparty/STM32L4XX_HAL/Src/stm32l4xx_hal_pcd_ex.c
     ../../thirdparty/STM32L4XX_HAL/Src/stm32l4xx_ll_usb.c
     ../../thirdparty/STM32L4A6ZGT/startup_stm32l4a6xx.s
-    ../../thirdparty/FreeRTOS/portable/GCC/ARM_CM4F/port.c
-    ../../thirdparty/FreeRTOS/portable/MemMang/heap_3.c
+    ../../thirdparty/FreeRTOS-Kernel/portable/GCC/ARM_CM4F/port.c
+    ../../thirdparty/FreeRTOS-Kernel/portable/MemMang/heap_3.c
     ${free_rtos_all}
 )
 
@@ -81,8 +81,8 @@ target_include_directories(${CMAKE_PROJECT_NAME} PUBLIC SYSTEM
     ../../thirdparty/cmsis-header-stm32/stm32l4xx/Include
     ../../thirdparty/CMSIS_5/CMSIS/Core/Include
     ../../thirdparty/CMSIS_5/CMSIS/Include
-    ../../thirdparty/FreeRTOS/include
-    ../../thirdparty/FreeRTOS/portable/GCC/ARM_CM4F
+    ../../thirdparty/FreeRTOS-Kernel/include
+    ../../thirdparty/FreeRTOS-Kernel/portable/GCC/ARM_CM4F
 )
 
 target_compile_definitions(${CMAKE_PROJECT_NAME} PUBLIC SYSTEM

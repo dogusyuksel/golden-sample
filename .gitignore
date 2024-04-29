@@ -18,6 +18,7 @@ hal/*/build/
 rtos/*/Makefile
 rtos/*/build/
 thirdparty/FreeRTOS/
+thirdparty/FreeRTOS-Kernel/
 thirdparty/openocd/
 thirdparty/CMSIS_5/
 thirdparty/STM32L4XX_HAL/
