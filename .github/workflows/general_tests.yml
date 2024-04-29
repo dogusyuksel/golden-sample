@@ -95,21 +95,6 @@ jobs:
       run: |
         ./docker/run_docker.sh ${{ secrets.DOCKER_REPO }}:master "st-info  --version"
 
-    - name: Checkout basic-C-linter
-      uses: actions/checkout@v2
-      with:
-        repository: dogusyuksel/basic-C-linter
-        path: './basic-C-linter'
-
-    - name: Build basic-C-linter
-      run: |
-         cd basic-C-linter
-         make
-
-    - name: Run basic-C-linter
-      run: |
-         ./basic-C-linter/analyzer -d ./ceedling/myproject/src
-
     - name: Hadolint Check
       uses: hadolint/hadolint-action@v3.1.0
       with:

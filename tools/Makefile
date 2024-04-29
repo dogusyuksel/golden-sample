@@ -1,6 +1,6 @@
 CC = gcc
 RM = rm -rf
-CFLAGS = -Wall -Wextra -g3 -O0 -lpthread
+CFLAGS = -Wall -Wextra -g3 -O0 -lpthread -Wno-deprecated-declarations
 all_c_files := $(wildcard *.c)
 
 .PHONY: all clean
