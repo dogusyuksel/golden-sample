@@ -12,10 +12,13 @@ if [ ! -d "../thirdparty/CMSIS_5" ]; then
     git clone https://github.com/ARM-software/CMSIS_5.git ../thirdparty/CMSIS_5
 fi
 
-if [ ! -d "../thirdparty/FreeRTOS" ]; then
-    git clone https://github.com/FreeRTOS/FreeRTOS-Kernel.git ../thirdparty/FreeRTOS
+if [ ! -d "../thirdparty/FreeRTOS-Kernel" ]; then
+    git clone https://github.com/FreeRTOS/FreeRTOS-Kernel.git ../thirdparty/FreeRTOS-Kernel
 fi
 
+# if [ ! -d "../thirdparty/FreeRTOS" ]; then
+#     git clone https://github.com/FreeRTOS/FreeRTOS.git ../thirdparty/FreeRTOS
+# fi
 
 if [ ! -d "../thirdparty/openocd" ]; then
     git clone https://github.com/STMicroelectronics/OpenOCD.git ../thirdparty/openocd

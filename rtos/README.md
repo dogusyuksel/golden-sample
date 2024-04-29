@@ -252,15 +252,15 @@ to add rtos
     - edit CMakeLists.txt
         
 file(GLOB free_rtos_all
-     "../../thirdparty/FreeRTOS/*.c"
+     "../../thirdparty/FreeRTOS-Kernel/*.c"
 )
 
-../../thirdparty/FreeRTOS/portable/GCC/ARM_CM4F/port.c
-../../thirdparty/FreeRTOS/portable/MemMang/heap_3.c
+../../thirdparty/FreeRTOS-Kernel/portable/GCC/ARM_CM4F/port.c
+../../thirdparty/FreeRTOS-Kernel/portable/MemMang/heap_3.c
 ${free_rtos_all}
 
-../../thirdparty/FreeRTOS/include
-../../thirdparty/FreeRTOS/portable/GCC/ARM_CM4F
+../../thirdparty/FreeRTOS-Kernel/include
+../../thirdparty/FreeRTOS-Kernel/portable/GCC/ARM_CM4F
 
     - edit main.c
 
