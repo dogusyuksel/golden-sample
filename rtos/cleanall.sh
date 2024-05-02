@@ -9,12 +9,16 @@ while IFS= read -r line; do
             rm -rf  $dirname/build
             exit 0
         fi
-
-        echo "be careful about the argument syntax"
-        exit 1
     fi
 
-    rm -rf  $dirname/build
+    if [[ $# -eq 0 ]]; then
+        rm -rf  $dirname/build
+    fi
 done <<< "$files"
+
+if [[ $# -eq 1 ]]; then
+    echo "be careful about the argument syntax"
+    exit 1
+fi
 
 exit 0
