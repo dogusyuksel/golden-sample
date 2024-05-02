@@ -19,12 +19,16 @@ while IFS= read -r line; do
             build $dirname
             exit 0
         fi
-
-        echo "be careful about the argument syntax"
-        exit 1
     fi
 
-    build $dirname
+    if [[ $# -eq 0 ]]; then
+        build $dirname
+    fi
 done <<< "$files"
+
+if [[ $# -eq 1 ]]; then
+    echo "be careful about the argument syntax"
+    exit 1
+fi
 
 exit 0
