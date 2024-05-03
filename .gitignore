@@ -23,6 +23,7 @@ thirdparty/openocd/
 thirdparty/CMSIS_5/
 thirdparty/STM32L4XX_HAL/
 thirdparty/cmsis-header-stm32/
+rtos/base_example/src/main.c
 
 *.log
 **/cache/**
