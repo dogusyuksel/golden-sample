@@ -19,7 +19,7 @@ if(NOT CMAKE_BUILD_TYPE)
 endif()
 
 # Set the project name
-set(CMAKE_PROJECT_NAME IO_vtask_delay)
+set(CMAKE_PROJECT_NAME base_example)
 
 # Include toolchain file
 include("../../thirdparty/STM32L4A6ZGT/gcc-arm-none-eabi.cmake")
