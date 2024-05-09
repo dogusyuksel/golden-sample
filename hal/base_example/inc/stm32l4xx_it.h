@@ -1,3 +1,4 @@
+
 #ifndef __STM32L4xx_IT_H
 #define __STM32L4xx_IT_H
 
@@ -16,6 +17,8 @@ void PendSV_Handler(void);
 void SysTick_Handler(void);
 void TIM1_UP_TIM16_IRQHandler(void);
 void EXTI15_10_IRQHandler(void);
+void DMA2_Channel3_IRQHandler(void);
+void LPUART1_IRQHandler(void);
 
 #ifdef __cplusplus
 }

@@ -32,32 +32,45 @@ do
 done
 
 build() {
-    mkdir  $1/build
-    cmake $1/ -B $1/build/
-    make -C $1/build clean
-    make -C $1/build all
-    arm-none-eabi-objcopy -O binary $1/build/$1.elf $1/build/$1.bin
+    mkdir  base_example/build
+    cmake base_example/ -B base_example/build/
+    make -C base_example/build clean
+    make -C base_example/build all
+    arm-none-eabi-objcopy -O binary base_example/build/base_example.elf base_example/build/base_example.bin
 }
 
 files=$(find . -name '*' -type d -maxdepth 1 -mindepth 1)
 while IFS= read -r line; do
     dirname=$(basename "$line")
-    if [[ $dirname =~ $project_name ]]; then
-        if [[ $clean_exists == "yes" ]]; then
-            rm -rf  $dirname/build
-        fi
-        if [[ $build_exists == "yes" ]]; then
-            build $dirname
-        fi
-        if [[ $flash_exists == "yes" ]]; then
-            cd  $dirname/build
-            st-flash write *.bin 0x08000000
-            cd ../..
-        fi
+    if [[ $dirname != "base_example" && $dirname != "assets" ]]; then
+        if [[ $dirname =~ $project_name || "all" == $project_name ]]; then
+            if [[ $clean_exists == "yes" ]]; then
+                rm -rf  base_example/build
+                rm -rf  $dirname/$dirname.bin
+            fi
+            if [[ $build_exists == "yes" ]]; then
+                cd .. && git apply hal/$dirname/$dirname.patch && cd -
+                build
+                cd ../ && git apply -R hal/$dirname/$dirname.patch && cd -
+            fi
+            if [[ $flash_exists == "yes" ]]; then
+                cd  base_example/build
+                cp -rf *.bin ../../$dirname/$dirname.bin
+                cd ../../$dirname
+                st-flash write *.bin 0x08000000
+                cd ../
+            fi
 
-        exit 0
+            if [[ "all" != $project_name ]]; then
+                exit 0
+            fi
+        fi
     fi
 done <<< "$files"
+
+if [[ "all" == $project_name ]]; then
+    exit 0
+fi
 
 echo "be sure about folder name"
 

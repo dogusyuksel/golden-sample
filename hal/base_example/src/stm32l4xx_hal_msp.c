@@ -53,13 +53,6 @@ void HAL_ADC_MspInit(ADC_HandleTypeDef *hadc) {
         }
 
         __HAL_LINKDMA(hadc, DMA_Handle, hdma_adc2);
-
-    } else if (hadc->Instance == ADC3) {
-
-        HAL_RCC_ADC_CLK_ENABLED++;
-        if (HAL_RCC_ADC_CLK_ENABLED == 1) {
-            __HAL_RCC_ADC_CLK_ENABLE();
-        }
     }
 }
 
@@ -83,13 +76,6 @@ void HAL_ADC_MspDeInit(ADC_HandleTypeDef *hadc) {
         HAL_GPIO_DeInit(GPIOA, GPIO_PIN_1);
 
         HAL_DMA_DeInit(hadc->DMA_Handle);
-
-    } else if (hadc->Instance == ADC3) {
-
-        HAL_RCC_ADC_CLK_ENABLED--;
-        if (HAL_RCC_ADC_CLK_ENABLED == 0) {
-            __HAL_RCC_ADC_CLK_DISABLE();
-        }
     }
 }
 
@@ -114,6 +100,9 @@ void HAL_UART_MspInit(UART_HandleTypeDef *huart) {
         GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
         GPIO_InitStruct.Alternate = GPIO_AF8_LPUART1;
         HAL_GPIO_Init(GPIOG, &GPIO_InitStruct);
+
+        HAL_NVIC_SetPriority(LPUART1_IRQn, 0, 0);
+        HAL_NVIC_EnableIRQ(LPUART1_IRQn);
     }
 }
 
@@ -123,6 +112,29 @@ void HAL_UART_MspDeInit(UART_HandleTypeDef *huart) {
         __HAL_RCC_LPUART1_CLK_DISABLE();
 
         HAL_GPIO_DeInit(GPIOG, STLK_RX_Pin | STLK_TX_Pin);
+
+        HAL_NVIC_DisableIRQ(LPUART1_IRQn);
+    }
+}
+
+void HAL_RTC_MspInit(RTC_HandleTypeDef *hrtc) {
+    RCC_PeriphCLKInitTypeDef PeriphClkInit = {0};
+    if (hrtc->Instance == RTC) {
+
+        PeriphClkInit.PeriphClockSelection = RCC_PERIPHCLK_RTC;
+        PeriphClkInit.RTCClockSelection = RCC_RTCCLKSOURCE_LSI;
+        if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInit) != HAL_OK) {
+            Error_Handler();
+        }
+
+        __HAL_RCC_RTC_ENABLE();
+    }
+}
+
+void HAL_RTC_MspDeInit(RTC_HandleTypeDef *hrtc) {
+    if (hrtc->Instance == RTC) {
+
+        __HAL_RCC_RTC_DISABLE();
     }
 }
 

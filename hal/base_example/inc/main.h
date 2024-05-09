@@ -12,6 +12,7 @@ void Error_Handler(void);
 
 #define B1_Pin GPIO_PIN_13
 #define B1_GPIO_Port GPIOC
+#define B1_EXTI_IRQn EXTI15_10_IRQn
 #define LD3_Pin GPIO_PIN_14
 #define LD3_GPIO_Port GPIOB
 #define USB_OverCurrent_Pin GPIO_PIN_5

@@ -85,7 +85,7 @@ jobs:
 
     - name: hal Build Check
       run: |
-        ./docker/run_docker.sh ${{ secrets.DOCKER_REPO }}:master "cd /workspace/hal && ./download_repos.sh && ./buildall.sh && ./cleanall.sh"
+        ./docker/run_docker.sh ${{ secrets.DOCKER_REPO }}:master "cd /workspace/hal && ./download_repos.sh && ./bake.sh all clean build"
 
     - name: rtos Build Check
       run: |
