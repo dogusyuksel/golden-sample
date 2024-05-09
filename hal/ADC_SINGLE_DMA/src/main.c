@@ -27,14 +27,12 @@ static void MX_ADC2_Init(void);
 static void MX_LPUART1_UART_Init(void);
 static void MX_USB_OTG_FS_PCD_Init(void);
 
-// called when first half of buffer is filled
 void HAL_ADC_ConvHalfCpltCallback(ADC_HandleTypeDef *hadc) {
     if (hadc == &hadc2) {
         HAL_GPIO_TogglePin(GPIOB, LD3_Pin);
     }
 }
 
-// called when buffer is completely filled
 void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef *hadc) {
     if (hadc == &hadc2) {
         HAL_GPIO_TogglePin(GPIOB, LD2_Pin);
@@ -56,15 +54,12 @@ int main(void) {
     MX_LPUART1_UART_Init();
     MX_USB_OTG_FS_PCD_Init();
 
-    // ADC1 is used for single ADC reading with polling method
-    // ADC2 is used for continuous ADC reading with DMA method
     HAL_ADC_Start_DMA(&hadc2, adc_buf, ADC_BUF_LEN);
 
     while (1) {
         HAL_ADC_Start(&hadc1);
         HAL_ADC_PollForConversion(&hadc1, HAL_MAX_DELAY);
         adcResult = HAL_ADC_GetValue(&hadc1);
-        // since resolution is 12 bit, 0V will be 0 and 3.3V (3300mV) will be 4095
         adcResultFloatinMV = ((3300 * adcResult) / 4095);
         memset(serial_buffer, 0, sizeof(serial_buffer));
         snprintf(serial_buffer, sizeof(serial_buffer), "MV: %d\n", (int)adcResultFloatinMV);

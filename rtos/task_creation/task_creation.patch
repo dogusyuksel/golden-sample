@@ -1,0 +1,65 @@
+diff --git a/rtos/base_example/src/main.c b/rtos/base_example/src/main.c
+index 09b0f6c..c2b76e9 100644
+--- a/rtos/base_example/src/main.c
++++ b/rtos/base_example/src/main.c
+@@ -1,14 +1,48 @@
+ #include "main.h"
++#include "FreeRTOS.h"
++#include "task.h"
++#include <stdio.h>
+ 
+ UART_HandleTypeDef hlpuart1;
+-
+ PCD_HandleTypeDef hpcd_USB_OTG_FS;
+ 
++TaskHandle_t xHandle = NULL;
++
+ void SystemClock_Config(void);
+ static void MX_GPIO_Init(void);
+ static void MX_LPUART1_UART_Init(void);
+ static void MX_USB_OTG_FS_PCD_Init(void);
+ 
++void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
++    if (GPIO_Pin == B1_Pin) {
++        HAL_GPIO_TogglePin(GPIOB, LD2_Pin);
++
++        char buffer[256] = {0};
++        static uint8_t counter = 0;
++
++        snprintf(buffer, sizeof(buffer), "counter: %d\n", counter++);
++
++        HAL_UART_Transmit(&hlpuart1, (uint8_t *)buffer, sizeof(buffer), 100);
++
++        if (counter == 10) {
++            HAL_UART_Transmit(&hlpuart1, (uint8_t *)"task deleted\n\0", 14, 100);
++            if( xHandle != NULL ) {
++                vTaskDelete(xHandle);
++            }
++        }
++    }
++}
++
++void dummy_function(void) { HAL_GPIO_TogglePin(GPIOB, LD3_Pin); }
++
++void mytask(void *data) {
++    (void)data;
++    while (1) {
++        vTaskDelay(pdMS_TO_TICKS(5000));
++        dummy_function();
++    }
++}
++
+ int main(void) {
+ 
+     HAL_Init();
+@@ -19,6 +53,10 @@ int main(void) {
+     MX_LPUART1_UART_Init();
+     MX_USB_OTG_FS_PCD_Init();
+ 
++    xTaskCreate(mytask, "mytask", configMINIMAL_STACK_SIZE, NULL, tskIDLE_PRIORITY, &xHandle);
++
++    vTaskStartScheduler();
++
+     while (1) {
+     }
+ }

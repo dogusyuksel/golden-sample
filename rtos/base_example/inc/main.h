@@ -1,3 +1,4 @@
+
 #ifndef __MAIN_H
 #define __MAIN_H
 
@@ -5,13 +6,10 @@
 extern "C" {
 #endif
 
-/* Includes ------------------------------------------------------------------*/
 #include "stm32l4xx_hal.h"
 
-/* Exported functions prototypes ---------------------------------------------*/
 void Error_Handler(void);
 
-/* Private defines -----------------------------------------------------------*/
 #define B1_Pin GPIO_PIN_13
 #define B1_GPIO_Port GPIOC
 #define B1_EXTI_IRQn EXTI15_10_IRQn

@@ -168,6 +168,12 @@ static int ptree(char *curpath, char *const path, struct file_queue_head *queue)
             if (!S_ISDIR(st.st_mode)) {
                 if (ep[strlen(ep) - 2] == '.' && (ep[strlen(ep) - 1] == 'c' || ep[strlen(ep) - 1] == 'C'))
                     add_filename_to_queue(ep, queue);
+                if (ep[strlen(ep) - 2] == '.' && (ep[strlen(ep) - 1] == 'h' || ep[strlen(ep) - 1] == 'H'))
+                    add_filename_to_queue(ep, queue);
+                if (ep[strlen(ep) - 2] == '.' && (ep[strlen(ep) - 1] == 'hpp' || ep[strlen(ep) - 1] == 'HPP'))
+                    add_filename_to_queue(ep, queue);
+                if (ep[strlen(ep) - 2] == '.' && (ep[strlen(ep) - 1] == 'cpp' || ep[strlen(ep) - 1] == 'CPP'))
+                    add_filename_to_queue(ep, queue);
             }
         }
 
@@ -206,7 +212,6 @@ static void trim_beginning(char *input) {
         if (input[i] == '\r' || input[i] == '\n' || input[i] == '\t' || input[i] == ' ') {
             input[i] = ' ';
         } else {
-            // no need to continue
             break;
         }
     }
@@ -231,7 +236,6 @@ static void trim_end(char *input) {
         if (input[i] == '\r' || input[i] == '\n' || input[i] == '\t' || input[i] == ' ') {
             input[i] = 0;
         } else {
-            // no need to continue
             break;
         }
     }
@@ -294,18 +298,15 @@ static int remove_comments_in_a_file(char *filename) {
             goto clean_continue;
         }
 
-        // handle "//" starting case (case 1)
         if (strlen(line_buffer) >= 2 && line_buffer[0] == '/' && line_buffer[1] == '/') {
             goto clean_continue;
         }
 
-        // handle "/**/" starting case (case 2)
         if (strlen(line_buffer) >= 2 && line_buffer[0] == '/' && line_buffer[1] == '*' &&
             line_buffer[strlen(line_buffer) - 1] == '/' && line_buffer[strlen(line_buffer) - 2] == '*') {
             goto clean_continue;
         }
 
-        // handle "/*" and "*/" in seperate lines starting case (case 3)
         if (strlen(line_buffer) >= 2 && line_buffer[0] == '/' && line_buffer[1] == '*') {
             case3_started = true;
             goto clean_continue;
