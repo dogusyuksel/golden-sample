@@ -18,7 +18,6 @@ static void MX_RTC_Init(void);
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart) {
     if (huart == &hlpuart1) {
         HAL_UART_Receive_IT(&hlpuart1, (uint8_t *)&ch, 1);
-        // just echo
         HAL_UART_Transmit(&hlpuart1, (uint8_t *)(&ch), 1, 10);
     }
 }

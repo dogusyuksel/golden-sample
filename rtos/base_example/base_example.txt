@@ -1,6 +1,6 @@
-Configuration	IO
+Configuration	base_example
 STM32CubeMX 	6.11.0
-Date	04/24/2024
+Date	05/07/2024
 MCU	STM32L4A6ZGTx
 
 
@@ -81,8 +81,8 @@ Pin Nb	PINs	FUNCTIONs	LABELs
 SOFTWARE PROJECT
 
 Project Settings : 
-Project Name : IO
-Project Folder : C:\Users\DogusYuksel\Desktop\CUBEMX\NUCLEOL4\IO
+Project Name : base_example
+Project Folder : C:\Users\DogusYuksel\Desktop\CUBEMX\base_example
 Toolchain / IDE : CMake
 Firmware Package Name and Version : STM32Cube FW_L4 V1.18.0
 
