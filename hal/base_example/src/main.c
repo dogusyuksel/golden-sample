@@ -1,6 +1,4 @@
 #include "main.h"
-#include <stdio.h>
-#include <string.h>
 
 ADC_HandleTypeDef hadc1;
 ADC_HandleTypeDef hadc2;
@@ -8,15 +6,9 @@ DMA_HandleTypeDef hdma_adc2;
 
 UART_HandleTypeDef hlpuart1;
 
+RTC_HandleTypeDef hrtc;
+
 PCD_HandleTypeDef hpcd_USB_OTG_FS;
-
-#define ADC_BUF_LEN 4096
-
-uint32_t adc_buf[ADC_BUF_LEN] = {0};
-char serial_buffer[64] = {0};
-
-uint16_t adcResult = 0;
-float adcResultFloatinMV = 0;
 
 void SystemClock_Config(void);
 void PeriphCommonClock_Config(void);
@@ -26,18 +18,7 @@ static void MX_ADC1_Init(void);
 static void MX_ADC2_Init(void);
 static void MX_LPUART1_UART_Init(void);
 static void MX_USB_OTG_FS_PCD_Init(void);
-
-void HAL_ADC_ConvHalfCpltCallback(ADC_HandleTypeDef *hadc) {
-    if (hadc == &hadc2) {
-        HAL_GPIO_TogglePin(GPIOB, LD3_Pin);
-    }
-}
-
-void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef *hadc) {
-    if (hadc == &hadc2) {
-        HAL_GPIO_TogglePin(GPIOB, LD2_Pin);
-    }
-}
+static void MX_RTC_Init(void);
 
 int main(void) {
 
@@ -53,19 +34,9 @@ int main(void) {
     MX_ADC2_Init();
     MX_LPUART1_UART_Init();
     MX_USB_OTG_FS_PCD_Init();
-
-    HAL_ADC_Start_DMA(&hadc2, adc_buf, ADC_BUF_LEN);
+    MX_RTC_Init();
 
     while (1) {
-        HAL_ADC_Start(&hadc1);
-        HAL_ADC_PollForConversion(&hadc1, HAL_MAX_DELAY);
-        adcResult = HAL_ADC_GetValue(&hadc1);
-        adcResultFloatinMV = ((3300 * adcResult) / 4095);
-        memset(serial_buffer, 0, sizeof(serial_buffer));
-        snprintf(serial_buffer, sizeof(serial_buffer), "MV: %d\n", (int)adcResultFloatinMV);
-        HAL_UART_Transmit(&hlpuart1, (uint8_t *)serial_buffer, strlen(serial_buffer), 100);
-
-        HAL_Delay(1000);
     }
 }
 
@@ -80,8 +51,9 @@ void SystemClock_Config(void) {
     HAL_PWR_EnableBkUpAccess();
     __HAL_RCC_LSEDRIVE_CONFIG(RCC_LSEDRIVE_LOW);
 
-    RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_LSE | RCC_OSCILLATORTYPE_MSI;
+    RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_LSI | RCC_OSCILLATORTYPE_LSE | RCC_OSCILLATORTYPE_MSI;
     RCC_OscInitStruct.LSEState = RCC_LSE_ON;
+    RCC_OscInitStruct.LSIState = RCC_LSI_ON;
     RCC_OscInitStruct.MSIState = RCC_MSI_ON;
     RCC_OscInitStruct.MSICalibrationValue = 0;
     RCC_OscInitStruct.MSIClockRange = RCC_MSIRANGE_6;
@@ -217,6 +189,41 @@ static void MX_LPUART1_UART_Init(void) {
     }
 }
 
+static void MX_RTC_Init(void) {
+
+    RTC_TimeTypeDef sTime = {0};
+    RTC_DateTypeDef sDate = {0};
+
+    hrtc.Instance = RTC;
+    hrtc.Init.HourFormat = RTC_HOURFORMAT_24;
+    hrtc.Init.AsynchPrediv = 127;
+    hrtc.Init.SynchPrediv = 255;
+    hrtc.Init.OutPut = RTC_OUTPUT_DISABLE;
+    hrtc.Init.OutPutRemap = RTC_OUTPUT_REMAP_NONE;
+    hrtc.Init.OutPutPolarity = RTC_OUTPUT_POLARITY_HIGH;
+    hrtc.Init.OutPutType = RTC_OUTPUT_TYPE_OPENDRAIN;
+    if (HAL_RTC_Init(&hrtc) != HAL_OK) {
+        Error_Handler();
+    }
+
+    sTime.Hours = 0x0;
+    sTime.Minutes = 0x0;
+    sTime.Seconds = 0x0;
+    sTime.DayLightSaving = RTC_DAYLIGHTSAVING_NONE;
+    sTime.StoreOperation = RTC_STOREOPERATION_RESET;
+    if (HAL_RTC_SetTime(&hrtc, &sTime, RTC_FORMAT_BCD) != HAL_OK) {
+        Error_Handler();
+    }
+    sDate.WeekDay = RTC_WEEKDAY_MONDAY;
+    sDate.Month = RTC_MONTH_JANUARY;
+    sDate.Date = 0x1;
+    sDate.Year = 0x0;
+
+    if (HAL_RTC_SetDate(&hrtc, &sDate, RTC_FORMAT_BCD) != HAL_OK) {
+        Error_Handler();
+    }
+}
+
 static void MX_USB_OTG_FS_PCD_Init(void) {
 
     hpcd_USB_OTG_FS.Instance = USB_OTG_FS;
@@ -277,6 +284,9 @@ static void MX_GPIO_Init(void) {
     GPIO_InitStruct.Pull = GPIO_NOPULL;
     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
     HAL_GPIO_Init(USB_PowerSwitchOn_GPIO_Port, &GPIO_InitStruct);
+
+    HAL_NVIC_SetPriority(EXTI15_10_IRQn, 0, 0);
+    HAL_NVIC_EnableIRQ(EXTI15_10_IRQn);
 }
 
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {

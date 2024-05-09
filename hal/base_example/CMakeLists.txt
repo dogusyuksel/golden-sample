@@ -19,7 +19,7 @@ if(NOT CMAKE_BUILD_TYPE)
 endif()
 
 # Set the project name
-set(CMAKE_PROJECT_NAME IO)
+set(CMAKE_PROJECT_NAME base_example)
 
 # Include toolchain file
 include("../../thirdparty/STM32L4A6ZGT/gcc-arm-none-eabi.cmake")
@@ -42,6 +42,8 @@ add_executable(${CMAKE_PROJECT_NAME}
     src/system_stm32l4xx.c
     src/sysmem.c
     src/syscalls.c
+    ../../thirdparty/STM32L4XX_HAL/Src/stm32l4xx_hal_adc.c
+    ../../thirdparty/STM32L4XX_HAL/Src/stm32l4xx_hal_adc_ex.c
     ../../thirdparty/STM32L4XX_HAL/Src/stm32l4xx_hal_uart.c
     ../../thirdparty/STM32L4XX_HAL/Src/stm32l4xx_hal_uart_ex.c
     ../../thirdparty/STM32L4XX_HAL/Src/stm32l4xx_hal.c
@@ -59,6 +61,8 @@ add_executable(${CMAKE_PROJECT_NAME}
     ../../thirdparty/STM32L4XX_HAL/Src/stm32l4xx_hal_pwr_ex.c
     ../../thirdparty/STM32L4XX_HAL/Src/stm32l4xx_hal_cortex.c
     ../../thirdparty/STM32L4XX_HAL/Src/stm32l4xx_hal_exti.c
+    ../../thirdparty/STM32L4XX_HAL/Src/stm32l4xx_hal_rtc.c
+    ../../thirdparty/STM32L4XX_HAL/Src/stm32l4xx_hal_rtc_ex.c
     ../../thirdparty/STM32L4XX_HAL/Src/stm32l4xx_hal_tim.c
     ../../thirdparty/STM32L4XX_HAL/Src/stm32l4xx_hal_tim_ex.c
     ../../thirdparty/STM32L4XX_HAL/Src/stm32l4xx_hal_pcd.c

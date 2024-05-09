@@ -46,7 +46,7 @@ while IFS= read -r line; do
         if [[ $dirname =~ $project_name || "all" == $project_name ]]; then
             if [[ $clean_exists == "yes" ]]; then
                 rm -rf  base_example/build
-                rm -rf  $dirname/base_example.bin
+                rm -rf  $dirname/$dirname.bin
             fi
             if [[ $build_exists == "yes" ]]; then
                 cd .. && git apply rtos/$dirname/$dirname.patch && cd -
@@ -55,7 +55,7 @@ while IFS= read -r line; do
             fi
             if [[ $flash_exists == "yes" ]]; then
                 cd  base_example/build
-                cp -rf *.bin ../../$dirname/
+                cp -rf *.bin ../../$dirname/$dirname.bin
                 cd ../../$dirname
                 st-flash write *.bin 0x08000000
                 cd ../
