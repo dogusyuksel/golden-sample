@@ -85,6 +85,7 @@ to exclude the API function. */
 #define INCLUDE_vTaskDelayUntil 1
 #define INCLUDE_vTaskDelay 1
 #define INCLUDE_xTaskGetHandle 1
+#define configUSE_TASK_NOTIFICATIONS 1
 
 /* Cortex-M specific definitions. */
 #ifdef __NVIC_PRIO_BITS
