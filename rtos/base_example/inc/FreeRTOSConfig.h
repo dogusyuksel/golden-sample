@@ -87,6 +87,8 @@ to exclude the API function. */
 #define INCLUDE_xTaskGetHandle 1
 #define configUSE_TASK_NOTIFICATIONS 1
 #define configUSE_QUEUE_SETS 1
+#define configSUPPORT_DYNAMIC_ALLOCATION 1
+//#define configSUPPORT_STATIC_ALLOCATION 1
 
 /* Cortex-M specific definitions. */
 #ifdef __NVIC_PRIO_BITS
