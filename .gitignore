@@ -22,11 +22,13 @@ thirdparty/FreeRTOS-Kernel/
 thirdparty/openocd/
 thirdparty/CMSIS_5/
 thirdparty/STM32L4XX_HAL/
+thirdparty/STM32F103X_HAL/
 thirdparty/cmsis-header-stm32/
 rtos/base_example/src/main.c
 rtos/*/*.bin
 hal/base_example/src/main.c
 hal/*/*.bin
+hw_tools/*/build
 
 *.log
 **/cache/**
