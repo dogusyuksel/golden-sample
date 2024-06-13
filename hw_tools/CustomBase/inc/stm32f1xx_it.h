@@ -3,7 +3,7 @@
 #define __STM32F1xx_IT_H
 
 #ifdef __cplusplus
- extern "C" {
+extern "C" {
 #endif
 
 void NMI_Handler(void);
