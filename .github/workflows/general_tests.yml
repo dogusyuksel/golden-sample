@@ -73,15 +73,19 @@ jobs:
 
     - name: tools Build Check
       run: |
-        ./docker/run_docker.sh ${{ secrets.DOCKER_REPO }}:master "cd /workspace/tools && make all"
+        ./docker/run_docker.sh ${{ secrets.DOCKER_REPO }}:master "cd /workspace/sw_tools && make all"
 
     - name: can_dump Build Check
       run: |
-        ./docker/run_docker.sh ${{ secrets.DOCKER_REPO }}:master "cd /workspace/tools/can_dump && ./build.sh"
+        ./docker/run_docker.sh ${{ secrets.DOCKER_REPO }}:master "cd /workspace/sw_tools/can_dump && ./build.sh"
 
     - name: json_parser Build Check
       run: |
-        ./docker/run_docker.sh ${{ secrets.DOCKER_REPO }}:master "cd /workspace/tools/json_parser && ./build.sh"
+        ./docker/run_docker.sh ${{ secrets.DOCKER_REPO }}:master "cd /workspace/sw_tools/json_parser && ./build.sh"
+
+    - name: custom Build Check
+      run: |
+        ./docker/run_docker.sh ${{ secrets.DOCKER_REPO }}:master "cd /workspace/hw_tools && ./download_repos.sh && ./bake.sh all clean build"
 
     - name: hal Build Check
       run: |
