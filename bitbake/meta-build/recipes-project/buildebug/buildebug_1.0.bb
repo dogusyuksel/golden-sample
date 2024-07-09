@@ -1,4 +1,4 @@
-DESCRIPTION = "Recipe to build the project with g++"
+DESCRIPTION = "Recipe to build the project debug enabled"
 PR = "r1"                       
 inherit debug                 
 
