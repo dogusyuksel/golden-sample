@@ -1,4 +1,4 @@
-DESCRIPTION = "Recipe to build ReadPeriodic project with gcc"
+DESCRIPTION = "Recipe to build the project"
 PR = "r1"
 
 do_build () {
