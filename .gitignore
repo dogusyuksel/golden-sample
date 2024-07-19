@@ -29,6 +29,9 @@ rtos/*/*.bin
 hal/base_example/src/main.c
 hal/*/*.bin
 hw_tools/*/build
+hal/build/pyshtables.py
+hal/build/__pycache__
+hal/build/bin
 
 *.log
 **/cache/**

@@ -1,8 +1,6 @@
-diff --git a/hal/base_example/src/main.c b/hal/base_example/src/main.c
-index 2c21e76..8899ee9 100644
---- a/hal/base_example/src/main.c
-+++ b/hal/base_example/src/main.c
-@@ -20,6 +20,12 @@ static void MX_LPUART1_UART_Init(void);
+--- /workspace/hal/base_example/src/main.c	2024-07-19 14:50:24.157332898 +0100
++++ /workspace/hal/base_example/src/main.c	2024-07-19 14:49:24.233037408 +0100
+@@ -20,6 +20,12 @@
  static void MX_USB_OTG_FS_PCD_Init(void);
  static void MX_RTC_Init(void);
  
@@ -15,7 +13,7 @@ index 2c21e76..8899ee9 100644
  int main(void) {
  
      HAL_Init();
-@@ -37,6 +43,8 @@ int main(void) {
+@@ -37,6 +43,8 @@
      MX_RTC_Init();
  
      while (1) {

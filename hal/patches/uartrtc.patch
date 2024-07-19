@@ -1,7 +1,5 @@
-diff --git a/hal/base_example/src/main.c b/hal/base_example/src/main.c
-index d0e5655..277a8b4 100644
---- a/hal/base_example/src/main.c
-+++ b/hal/base_example/src/main.c
+--- /workspace/hal/base_example/src/main.c	2024-07-19 16:50:46.276179669 +0100
++++ /workspace/hal/base_example/src/main.c	2024-07-19 16:50:39.266998544 +0100
 @@ -1,4 +1,6 @@
  #include "main.h"
 +#include <stdio.h>
@@ -9,7 +7,7 @@ index d0e5655..277a8b4 100644
  
  ADC_HandleTypeDef hadc1;
  ADC_HandleTypeDef hadc2;
-@@ -10,6 +12,10 @@ RTC_HandleTypeDef hrtc;
+@@ -10,6 +12,10 @@
  
  PCD_HandleTypeDef hpcd_USB_OTG_FS;
  
@@ -20,7 +18,7 @@ index d0e5655..277a8b4 100644
  void SystemClock_Config(void);
  void PeriphCommonClock_Config(void);
  static void MX_GPIO_Init(void);
-@@ -20,7 +26,25 @@ static void MX_LPUART1_UART_Init(void);
+@@ -20,7 +26,25 @@
  static void MX_USB_OTG_FS_PCD_Init(void);
  static void MX_RTC_Init(void);
  
@@ -46,7 +44,7 @@ index d0e5655..277a8b4 100644
  
      HAL_Init();
  
-@@ -36,7 +60,56 @@ int main(void) {
+@@ -36,7 +60,56 @@
      MX_USB_OTG_FS_PCD_Init();
      MX_RTC_Init();
  
@@ -103,4 +101,3 @@ index d0e5655..277a8b4 100644
      }
  }
  
-
