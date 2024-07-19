@@ -2,6 +2,11 @@
 
 if [ ! -d "../thirdparty/STM32F103X_HAL" ]; then
     git clone https://github.com/STMicroelectronics/stm32f1xx_hal_driver.git ../thirdparty/STM32F103X_HAL
+    files=$(find ../thirdparty/STM32F103X_HAL -name '*template.c' -type f)
+    while IFS= read -r line; do
+        echo "deleted file $line"
+        rm -rf $line
+    done <<< "$files"
 fi
 
 if [ ! -d "../thirdparty/cmsis-header-stm32" ]; then

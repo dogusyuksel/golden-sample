@@ -34,40 +34,17 @@ enable_language(C ASM)
 project(${CMAKE_PROJECT_NAME})
 message("Build type: " ${CMAKE_BUILD_TYPE})
 
+file(GLOB files_under_src
+     "src/*.c"
+)
+
+file(GLOB files_under_hal
+     "../../thirdparty/STM32L4XX_HAL/Src/*.c"
+)
+
 add_executable(${CMAKE_PROJECT_NAME}
-    src/main.c
-    src/stm32l4xx_it.c
-    src/stm32l4xx_hal_msp.c
-    src/stm32l4xx_hal_timebase_tim.c
-    src/system_stm32l4xx.c
-    src/sysmem.c
-    src/syscalls.c
-    ../../thirdparty/STM32L4XX_HAL/Src/stm32l4xx_hal_adc.c
-    ../../thirdparty/STM32L4XX_HAL/Src/stm32l4xx_hal_adc_ex.c
-    ../../thirdparty/STM32L4XX_HAL/Src/stm32l4xx_hal_uart.c
-    ../../thirdparty/STM32L4XX_HAL/Src/stm32l4xx_hal_uart_ex.c
-    ../../thirdparty/STM32L4XX_HAL/Src/stm32l4xx_hal.c
-    ../../thirdparty/STM32L4XX_HAL/Src/stm32l4xx_hal_rcc.c
-    ../../thirdparty/STM32L4XX_HAL/Src/stm32l4xx_hal_rcc_ex.c
-    ../../thirdparty/STM32L4XX_HAL/Src/stm32l4xx_hal_flash.c
-    ../../thirdparty/STM32L4XX_HAL/Src/stm32l4xx_hal_flash_ex.c
-    ../../thirdparty/STM32L4XX_HAL/Src/stm32l4xx_hal_flash_ramfunc.c
-    ../../thirdparty/STM32L4XX_HAL/Src/stm32l4xx_hal_gpio.c
-    ../../thirdparty/STM32L4XX_HAL/Src/stm32l4xx_hal_i2c.c
-    ../../thirdparty/STM32L4XX_HAL/Src/stm32l4xx_hal_i2c_ex.c
-    ../../thirdparty/STM32L4XX_HAL/Src/stm32l4xx_hal_dma.c
-    ../../thirdparty/STM32L4XX_HAL/Src/stm32l4xx_hal_dma_ex.c
-    ../../thirdparty/STM32L4XX_HAL/Src/stm32l4xx_hal_pwr.c
-    ../../thirdparty/STM32L4XX_HAL/Src/stm32l4xx_hal_pwr_ex.c
-    ../../thirdparty/STM32L4XX_HAL/Src/stm32l4xx_hal_cortex.c
-    ../../thirdparty/STM32L4XX_HAL/Src/stm32l4xx_hal_exti.c
-    ../../thirdparty/STM32L4XX_HAL/Src/stm32l4xx_hal_rtc.c
-    ../../thirdparty/STM32L4XX_HAL/Src/stm32l4xx_hal_rtc_ex.c
-    ../../thirdparty/STM32L4XX_HAL/Src/stm32l4xx_hal_tim.c
-    ../../thirdparty/STM32L4XX_HAL/Src/stm32l4xx_hal_tim_ex.c
-    ../../thirdparty/STM32L4XX_HAL/Src/stm32l4xx_hal_pcd.c
-    ../../thirdparty/STM32L4XX_HAL/Src/stm32l4xx_hal_pcd_ex.c
-    ../../thirdparty/STM32L4XX_HAL/Src/stm32l4xx_ll_usb.c
+    ${files_under_src}
+    ${files_under_hal}
     ../../thirdparty/STM32L4A6ZGT/startup_stm32l4a6xx.s
 )
 

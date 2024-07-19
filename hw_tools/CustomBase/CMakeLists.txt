@@ -34,33 +34,17 @@ enable_language(C ASM)
 project(${CMAKE_PROJECT_NAME})
 message("Build type: " ${CMAKE_BUILD_TYPE})
 
+file(GLOB files_under_src
+     "src/*.c"
+)
+
+file(GLOB files_under_hal
+     "../../thirdparty/STM32F103X_HAL/Src/*.c"
+)
+
 add_executable(${CMAKE_PROJECT_NAME}
-    src/main.c
-    src/stm32f1xx_it.c
-    src/stm32f1xx_hal_msp.c
-    src/stm32f1xx_hal_timebase_tim.c
-    src/system_stm32f1xx.c
-    src/sysmem.c
-    src/syscalls.c
-    ../../thirdparty/STM32F103X_HAL/Src/stm32f1xx_hal_gpio_ex.c
-    ../../thirdparty/STM32F103X_HAL/Src/stm32f1xx_hal_adc.c
-    ../../thirdparty/STM32F103X_HAL/Src/stm32f1xx_hal_adc_ex.c
-    ../../thirdparty/STM32F103X_HAL/Src/stm32f1xx_hal.c
-    ../../thirdparty/STM32F103X_HAL/Src/stm32f1xx_hal_rcc.c
-    ../../thirdparty/STM32F103X_HAL/Src/stm32f1xx_hal_rcc_ex.c
-    ../../thirdparty/STM32F103X_HAL/Src/stm32f1xx_hal_gpio.c
-    ../../thirdparty/STM32F103X_HAL/Src/stm32f1xx_hal_dma.c
-    ../../thirdparty/STM32F103X_HAL/Src/stm32f1xx_hal_cortex.c
-    ../../thirdparty/STM32F103X_HAL/Src/stm32f1xx_hal_pwr.c
-    ../../thirdparty/STM32F103X_HAL/Src/stm32f1xx_hal_flash.c
-    ../../thirdparty/STM32F103X_HAL/Src/stm32f1xx_hal_flash_ex.c
-    ../../thirdparty/STM32F103X_HAL/Src/stm32f1xx_hal_exti.c
-    ../../thirdparty/STM32F103X_HAL/Src/stm32f1xx_hal_can.c
-    ../../thirdparty/STM32F103X_HAL/Src/stm32f1xx_hal_i2c.c
-    ../../thirdparty/STM32F103X_HAL/Src/stm32f1xx_hal_spi.c
-    ../../thirdparty/STM32F103X_HAL/Src/stm32f1xx_hal_tim.c
-    ../../thirdparty/STM32F103X_HAL/Src/stm32f1xx_hal_tim_ex.c
-    ../../thirdparty/STM32F103X_HAL/Src/stm32f1xx_hal_uart.c
+    ${files_under_src}
+    ${files_under_hal}
     ../../thirdparty/STM32F103C8T/startup_stm32f103xb.s
 )
 
