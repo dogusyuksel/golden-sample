@@ -218,3 +218,68 @@ Some of the variables can be seen as below, these are predefined according to ro
 	elseif(${CMAKE_BUILD_TYPE} MATCHES Release)
 		message("Release Build")
 	endif()
+
+# Examples
+
+## dynamic lib
+
+.
+├── lib
+│   ├── CMakeLists.txt
+│   ├── mylibrary.c
+│   └── mylibrary.h
+└── project
+    ├── CMakeLists.txt
+    └── main.c
+
+
+lib/CMakeLists.txt -->
+    cmake_minimum_required(VERSION 3.6)
+    project(mylibrary_project)
+
+    # CMake instructions to make the static lib
+
+    add_library( mylibrary SHARED
+                    mylibrary.c )
+
+project/CMakeLists.txt -->
+    cmake_minimum_required(VERSION 3.6)
+    project(mylibrary_project)
+
+    include_directories(${CMAKE_SOURCE_DIR}/../lib)
+
+    add_executable(executable main.c)
+    target_link_libraries(executable ${CMAKE_SOURCE_DIR}/../lib/libmylibrary.so)
+
+
+## static lib
+
+.
+├── lib
+│   ├── CMakeLists.txt
+│   ├── mylibrary.c
+│   └── mylibrary.h
+└── project
+    ├── CMakeLists.txt
+    └── main.c
+
+
+lib/CMakeLists.txt -->
+    cmake_minimum_required(VERSION 3.6)
+    project(mylibrary_project)
+
+    # CMake instructions to make the static lib
+
+    add_library( mylibrary STATIC
+                    mylibrary.c )
+
+
+project/CMakeLists.txt -->
+    cmake_minimum_required(VERSION 3.6)
+    project(mylibrary_project)
+
+    include_directories(${CMAKE_SOURCE_DIR}/../lib)
+
+    add_executable(executable main.c)
+    target_link_libraries(executable ${CMAKE_SOURCE_DIR}/../lib/libmylibrary.a)
+

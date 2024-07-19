@@ -1,12 +1,5 @@
 cmake_minimum_required(VERSION 3.22)
 
-#
-# This file is generated only once,
-# and is not re-generated if converter is called multiple times.
-#
-# User is free to modify the file as much as necessary
-#
-
 # Setup compiler settings
 set(CMAKE_C_STANDARD 11)
 set(CMAKE_C_STANDARD_REQUIRED ON)
@@ -19,10 +12,11 @@ if(NOT CMAKE_BUILD_TYPE)
 endif()
 
 # Set the project name
-set(CMAKE_PROJECT_NAME base_example)
+set(CMAKE_PROJECT_NAME "${NAME}-${VER}")
 
 # Include toolchain file
-include("../../thirdparty/STM32L4A6ZGT/gcc-arm-none-eabi.cmake")
+include(${TOOLCHAIN_PATH})
+message("TOOLCHAIN_PATH:         " ${TOOLCHAIN_PATH})
 
 # Enable compile command to ease indexing with e.g. clangd
 set(CMAKE_EXPORT_COMPILE_COMMANDS TRUE)
@@ -32,52 +26,44 @@ enable_language(C ASM)
 
 # Core project settings
 project(${CMAKE_PROJECT_NAME})
-message("Build type: " ${CMAKE_BUILD_TYPE})
+message("CMAKE_BUILD_TYPE:       " ${CMAKE_BUILD_TYPE})
+
+
+message("CMAKE_BINARY_DIR:       " ${CMAKE_BINARY_DIR})
+set(EXECUTABLE_OUTPUT_PATH ${CMAKE_BINARY_DIR}/bin)
+message("EXECUTABLE_OUTPUT_PATH: " ${EXECUTABLE_OUTPUT_PATH})
+
+message("SOURCE_FILES_PATH:      " ${SOURCE_FILES_PATH})
+file(GLOB files_under_src
+     "${SOURCE_FILES_PATH}/*.c"
+)
+message("files_under_src:        " ${files_under_src})
+
+message("HAL_FILES_PATH:         " ${HAL_FILES_PATH})
+file(GLOB files_under_hal
+     "${HAL_FILES_PATH}/*.c"
+)
+message("files_under_hal:        " ${files_under_hal})
+
+message("STARTUP_FILES_PATH:     " ${STARTUP_FILES_PATH})
+file(GLOB files_startup
+     "${STARTUP_FILES_PATH}/*.s"
+)
+message("files_startup:          " ${files_startup})
 
 add_executable(${CMAKE_PROJECT_NAME}
-    src/main.c
-    src/stm32l4xx_it.c
-    src/stm32l4xx_hal_msp.c
-    src/stm32l4xx_hal_timebase_tim.c
-    src/system_stm32l4xx.c
-    src/sysmem.c
-    src/syscalls.c
-    ../../thirdparty/STM32L4XX_HAL/Src/stm32l4xx_hal_adc.c
-    ../../thirdparty/STM32L4XX_HAL/Src/stm32l4xx_hal_adc_ex.c
-    ../../thirdparty/STM32L4XX_HAL/Src/stm32l4xx_hal_uart.c
-    ../../thirdparty/STM32L4XX_HAL/Src/stm32l4xx_hal_uart_ex.c
-    ../../thirdparty/STM32L4XX_HAL/Src/stm32l4xx_hal.c
-    ../../thirdparty/STM32L4XX_HAL/Src/stm32l4xx_hal_rcc.c
-    ../../thirdparty/STM32L4XX_HAL/Src/stm32l4xx_hal_rcc_ex.c
-    ../../thirdparty/STM32L4XX_HAL/Src/stm32l4xx_hal_flash.c
-    ../../thirdparty/STM32L4XX_HAL/Src/stm32l4xx_hal_flash_ex.c
-    ../../thirdparty/STM32L4XX_HAL/Src/stm32l4xx_hal_flash_ramfunc.c
-    ../../thirdparty/STM32L4XX_HAL/Src/stm32l4xx_hal_gpio.c
-    ../../thirdparty/STM32L4XX_HAL/Src/stm32l4xx_hal_i2c.c
-    ../../thirdparty/STM32L4XX_HAL/Src/stm32l4xx_hal_i2c_ex.c
-    ../../thirdparty/STM32L4XX_HAL/Src/stm32l4xx_hal_dma.c
-    ../../thirdparty/STM32L4XX_HAL/Src/stm32l4xx_hal_dma_ex.c
-    ../../thirdparty/STM32L4XX_HAL/Src/stm32l4xx_hal_pwr.c
-    ../../thirdparty/STM32L4XX_HAL/Src/stm32l4xx_hal_pwr_ex.c
-    ../../thirdparty/STM32L4XX_HAL/Src/stm32l4xx_hal_cortex.c
-    ../../thirdparty/STM32L4XX_HAL/Src/stm32l4xx_hal_exti.c
-    ../../thirdparty/STM32L4XX_HAL/Src/stm32l4xx_hal_rtc.c
-    ../../thirdparty/STM32L4XX_HAL/Src/stm32l4xx_hal_rtc_ex.c
-    ../../thirdparty/STM32L4XX_HAL/Src/stm32l4xx_hal_tim.c
-    ../../thirdparty/STM32L4XX_HAL/Src/stm32l4xx_hal_tim_ex.c
-    ../../thirdparty/STM32L4XX_HAL/Src/stm32l4xx_hal_pcd.c
-    ../../thirdparty/STM32L4XX_HAL/Src/stm32l4xx_hal_pcd_ex.c
-    ../../thirdparty/STM32L4XX_HAL/Src/stm32l4xx_ll_usb.c
-    ../../thirdparty/STM32L4A6ZGT/startup_stm32l4a6xx.s
+    ${files_under_src}
+    ${files_under_hal}
+    ${files_startup}
 )
 
+message("INCLUDES_PATHS:         " ${INCLUDES_PATHS})
+string(REPLACE ":" ";" INCLUDES_PATHS_EDITED ${INCLUDES_PATHS})
+foreach(file ${INCLUDES_PATHS_EDITED})
+    message("file: ${file}")
+endforeach()
 target_include_directories(${CMAKE_PROJECT_NAME} PUBLIC SYSTEM
-    inc
-    ../../thirdparty/STM32L4XX_HAL/Inc
-    ../../thirdparty/STM32L4XX_HAL/Inc/Legacy
-    ../../thirdparty/cmsis-header-stm32/stm32l4xx/Include
-    ../../thirdparty/CMSIS_5/CMSIS/Core/Include
-    ../../thirdparty/CMSIS_5/CMSIS/Include
+    ${INCLUDES_PATHS_EDITED}
 )
 
 target_compile_definitions(${CMAKE_PROJECT_NAME} PUBLIC SYSTEM

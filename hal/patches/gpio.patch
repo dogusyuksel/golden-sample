@@ -1,0 +1,24 @@
+--- /workspace/hal/base_example/src/main.c	2024-07-19 14:50:24.157332898 +0100
++++ /workspace/hal/base_example/src/main.c	2024-07-19 14:49:24.233037408 +0100
+@@ -20,6 +20,12 @@
+ static void MX_USB_OTG_FS_PCD_Init(void);
+ static void MX_RTC_Init(void);
+ 
++void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
++    if (GPIO_Pin == B1_Pin) {
++        HAL_GPIO_TogglePin(GPIOB, LD2_Pin);
++    }
++}
++
+ int main(void) {
+ 
+     HAL_Init();
+@@ -37,6 +43,8 @@
+     MX_RTC_Init();
+ 
+     while (1) {
++        HAL_GPIO_TogglePin(GPIOB, LD3_Pin);
++        HAL_Delay(100);
+     }
+ }
+ 

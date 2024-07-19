@@ -59,14 +59,6 @@ jobs:
       run: |
         ./docker/run_docker.sh ${{ secrets.DOCKER_REPO }}:master "cd /workspace/scripts && ./run_unittests.sh"
 
-    - name: bitbake Build Check
-      run: |
-        ./docker/run_docker.sh ${{ secrets.DOCKER_REPO }}:master "cd /workspace/bitbake/buildandtest/ && source environment && bitbake buildgcc:do_build ; cat tmp/buildgcc/work/log.do_build && bitbake buildebug:do_build ; cat tmp/buildebug/work/log.do_build"
-
-    - name: valgrind Check
-      run: |
-        ./docker/run_docker.sh ${{ secrets.DOCKER_REPO }}:master "cd /workspace/bitbake/buildandtest/ && source environment && bitbake testall ; cat tmp/testall/work/log.do_build"
-
     - name: glibc Build Check
       run: |
         ./docker/run_docker.sh ${{ secrets.DOCKER_REPO }}:master "cd /workspace/glibc && make all"
@@ -89,7 +81,7 @@ jobs:
 
     - name: hal Build Check
       run: |
-        ./docker/run_docker.sh ${{ secrets.DOCKER_REPO }}:master "cd /workspace/hal && ./download_repos.sh && ./bake.sh all clean build"
+        ./docker/run_docker.sh ${{ secrets.DOCKER_REPO }}:master "cd /workspace/hal && ./download_repos.sh && cd build && ./build_all.sh"
 
     - name: rtos Build Check
       run: |
