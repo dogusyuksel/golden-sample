@@ -85,7 +85,7 @@ jobs:
 
     - name: rtos Build Check
       run: |
-        ./docker/run_docker.sh ${{ secrets.DOCKER_REPO }}:master "cd /workspace/rtos && ./download_repos.sh && ./bake.sh all clean build"
+        ./docker/run_docker.sh ${{ secrets.DOCKER_REPO }}:master "cd /workspace/rtos && ./download_repos.sh && cd build && ./build_all.sh"
 
     - name: stlink check
       run: |

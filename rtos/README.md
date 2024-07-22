@@ -1,13 +1,6 @@
 # SOME NOTES
 ------------------------
 
-## To Build
-
-./bake.sh <target_name> <action>
-eg: ./bake.sh qset_semaphore build
-
-useable actions: build, clean, flash (all of them can be used at the same time)
-
 ## While Debugging
 
 check this link: https://www.youtube.com/watch?v=_1u7IOnivnM
