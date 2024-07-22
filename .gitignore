@@ -32,6 +32,9 @@ hw_tools/*/build
 hal/build/pyshtables.py
 hal/build/__pycache__
 hal/build/bin
+rtos/build/pyshtables.py
+rtos/build/__pycache__
+rtos/build/bin
 
 *.log
 **/cache/**
