@@ -19,7 +19,7 @@ if(NOT CMAKE_BUILD_TYPE)
 endif()
 
 # Set the project name
-set(CMAKE_PROJECT_NAME CustomBase)
+set(CMAKE_PROJECT_NAME STM32F1_Custom)
 
 # Include toolchain file
 include("../../thirdparty/STM32F103C8T/gcc-arm-none-eabi.cmake")
@@ -42,10 +42,17 @@ file(GLOB files_under_hal
      "../../thirdparty/STM32F103X_HAL/Src/*.c"
 )
 
+file(GLOB free_rtos_all
+     "../../thirdparty/FreeRTOS-Kernel/*.c"
+)
+
 add_executable(${CMAKE_PROJECT_NAME}
     ${files_under_src}
     ${files_under_hal}
     ../../thirdparty/STM32F103C8T/startup_stm32f103xb.s
+    ${free_rtos_all}
+    ../../thirdparty/FreeRTOS-Kernel/portable/GCC/ARM_CM3/port.c
+    ../../thirdparty/FreeRTOS-Kernel/portable/MemMang/heap_3.c
 )
 
 target_include_directories(${CMAKE_PROJECT_NAME} PUBLIC SYSTEM
@@ -54,8 +61,10 @@ target_include_directories(${CMAKE_PROJECT_NAME} PUBLIC SYSTEM
     ../../thirdparty/STM32F103X_HAL/Inc/Legacy
     ../../thirdparty/cmsis-header-stm32/stm32f1xx/Include
     ../../thirdparty/CMSIS_5/CMSIS/Core/Include
-    ../../thirdparty/CMSIS_5/CMSIS/Include
+    ../../thirdparty/FreeRTOS-Kernel/include
+    ../../thirdparty/FreeRTOS-Kernel/portable/GCC/ARM_CM3
 )
+
 
 
 target_compile_definitions(${CMAKE_PROJECT_NAME} PUBLIC SYSTEM
