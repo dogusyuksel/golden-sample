@@ -25,6 +25,10 @@ enable_language(C ASM)
 project(${CMAKE_PROJECT_NAME})
 message("Build type: " ${CMAKE_BUILD_TYPE})
 
+file(GLOB_RECURSE generated_files
+     "generated_files/*.c"
+)
+
 file(GLOB free_rtos_all
      "../../thirdparty/FreeRTOS-Kernel/*.c"
 )
@@ -55,11 +59,13 @@ add_executable(${CMAKE_PROJECT_NAME}
     libcanard/drivers/stm32/canard_stm32.c
     ${free_rtos_all}
     ${src_all}
+    ${generated_files}
 )
 target_include_directories(${CMAKE_PROJECT_NAME} PUBLIC SYSTEM
     inc
     libcanard
     libcanard/drivers/stm32
+    generated_files
     ../../thirdparty/STM32F103X_HAL/Inc
     ../../thirdparty/STM32F103X_HAL/Inc/Legacy
     ../../thirdparty/FreeRTOS-Kernel/portable/GCC/ARM_CM3

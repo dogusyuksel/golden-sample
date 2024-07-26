@@ -35,6 +35,7 @@ hal/build/bin
 rtos/build/pyshtables.py
 rtos/build/__pycache__
 rtos/build/bin
+hw_tools/CANBUS/generated_files
 
 *.log
 **/cache/**

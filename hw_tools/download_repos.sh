@@ -31,6 +31,8 @@ if [ ! -d "CANBUS/libcanard" ]; then
     git checkout c3f77b2354980348c74289557614a53f6d560482
     git submodule update --init --recursive
     cd -
+    patch -d CANBUS -p1 < ./CANBUS/transport.py.patch
+    ./CANBUS/libcanard/dsdl_compiler/libcanard_dsdlc ./CANBUS/nodes --incdir ./CANBUS/libcanard/dsdl_compiler/pyuavcan/uavcan --outdir ./CANBUS/generated_files
 fi
 
 

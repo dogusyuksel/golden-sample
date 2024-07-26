@@ -14,7 +14,6 @@ void canardtask(void *data) {
         sendCanard();
         receiveCanard();
         spinCanard();
-        publishCanard();
     }
 }
 
@@ -27,6 +26,8 @@ int main(void) {
     MX_GPIO_Init();
     MX_CAN_Init();
     MX_USART3_UART_Init();
+
+    uavcanInit();
 
     xTaskCreate(canardtask, "canardtask", 1024, NULL, tskIDLE_PRIORITY, NULL);
     vTaskStartScheduler();
