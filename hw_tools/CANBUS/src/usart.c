@@ -15,7 +15,6 @@ void MX_USART3_UART_Init(void) {
     if (HAL_UART_Init(&huart3) != HAL_OK) {
         Error_Handler();
     }
-
 }
 
 void HAL_UART_MspInit(UART_HandleTypeDef *uartHandle) {
@@ -38,7 +37,6 @@ void HAL_UART_MspInit(UART_HandleTypeDef *uartHandle) {
 
         HAL_NVIC_SetPriority(USART3_IRQn, 0, 0);
         HAL_NVIC_EnableIRQ(USART3_IRQn);
-
     }
 }
 
@@ -51,7 +49,5 @@ void HAL_UART_MspDeInit(UART_HandleTypeDef *uartHandle) {
         HAL_GPIO_DeInit(GPIOB, GPIO_PIN_10 | GPIO_PIN_11);
 
         HAL_NVIC_DisableIRQ(USART3_IRQn);
-
     }
 }
-

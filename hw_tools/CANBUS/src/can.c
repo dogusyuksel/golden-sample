@@ -19,7 +19,6 @@ void MX_CAN_Init(void) {
     if (HAL_CAN_Init(&hcan) != HAL_OK) {
         Error_Handler();
     }
-
 }
 
 void HAL_CAN_MspInit(CAN_HandleTypeDef *canHandle) {
@@ -39,7 +38,6 @@ void HAL_CAN_MspInit(CAN_HandleTypeDef *canHandle) {
         GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
         GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_HIGH;
         HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
-
     }
 }
 
@@ -50,7 +48,5 @@ void HAL_CAN_MspDeInit(CAN_HandleTypeDef *canHandle) {
         __HAL_RCC_CAN1_CLK_DISABLE();
 
         HAL_GPIO_DeInit(GPIOA, GPIO_PIN_11 | GPIO_PIN_12);
-
     }
 }
-

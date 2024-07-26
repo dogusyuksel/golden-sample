@@ -35,19 +35,8 @@ void UsageFault_Handler(void) {
     }
 }
 
-void DebugMon_Handler(void) {
+void DebugMon_Handler(void) {}
 
-}
+void TIM1_UP_IRQHandler(void) { HAL_TIM_IRQHandler(&htim1); }
 
-void TIM1_UP_IRQHandler(void) {
-
-    HAL_TIM_IRQHandler(&htim1);
-
-}
-
-void USART3_IRQHandler(void) {
-
-    HAL_UART_IRQHandler(&huart3);
-
-}
-
+void USART3_IRQHandler(void) { HAL_UART_IRQHandler(&huart3); }

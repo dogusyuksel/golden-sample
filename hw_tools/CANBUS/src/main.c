@@ -2,9 +2,9 @@
 #include "FreeRTOS.h"
 #include "can.h"
 #include "gpio.h"
-#include "usart.h"
 #include "task.h"
 #include "uavcan.h"
+#include "usart.h"
 
 void SystemClock_Config(void);
 
@@ -32,7 +32,6 @@ int main(void) {
     vTaskStartScheduler();
 
     while (1) {
-
     }
 }
 
@@ -64,7 +63,6 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
     if (htim->Instance == TIM1) {
         HAL_IncTick();
     }
-
 }
 
 void Error_Handler(void) {
@@ -74,6 +72,5 @@ void Error_Handler(void) {
 }
 
 #ifdef USE_FULL_ASSERT
-void assert_failed(uint8_t *file, uint32_t line) {
-}
+void assert_failed(uint8_t *file, uint32_t line) {}
 #endif /* USE_FULL_ASSERT */

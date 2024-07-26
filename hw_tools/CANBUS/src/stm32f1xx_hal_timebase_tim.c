@@ -46,10 +46,6 @@ HAL_StatusTypeDef HAL_InitTick(uint32_t TickPriority) {
     return status;
 }
 
-void HAL_SuspendTick(void) {
-    __HAL_TIM_DISABLE_IT(&htim1, TIM_IT_UPDATE);
-}
+void HAL_SuspendTick(void) { __HAL_TIM_DISABLE_IT(&htim1, TIM_IT_UPDATE); }
 
-void HAL_ResumeTick(void) {
-    __HAL_TIM_ENABLE_IT(&htim1, TIM_IT_UPDATE);
-}
+void HAL_ResumeTick(void) { __HAL_TIM_ENABLE_IT(&htim1, TIM_IT_UPDATE); }
