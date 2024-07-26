@@ -3,7 +3,7 @@
 #include "main.h"
 #include "stm32f1xx_hal.h"
 
-#define LOCAL_NODE_ID   10
+#define LOCAL_NODE_ID 10
 
 extern UART_HandleTypeDef huart3;
 
