@@ -25,5 +25,13 @@ if [ ! -d "../thirdparty/openocd" ]; then
     git clone https://github.com/STMicroelectronics/OpenOCD.git ../thirdparty/openocd
 fi
 
+if [ ! -d "CANBUS/libcanard" ]; then
+    git clone https://github.com/skyyuzhang/libcanard.git CANBUS/libcanard
+    cd CANBUS/libcanard
+    git checkout c3f77b2354980348c74289557614a53f6d560482
+    git submodule update --init --recursive
+    cd -
+fi
+
 
 exit 0
