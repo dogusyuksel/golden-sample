@@ -4,6 +4,8 @@ ceedling/myproject/build
 *.lock
 *.sock
 *.exe
+*.orig
+*.rej
 python/*/__pycache__/
 executable
 **/CMakeFiles

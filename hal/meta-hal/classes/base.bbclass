@@ -10,7 +10,6 @@ SRC_URI =  "\
 TOOLCHAIN_PATH = "/workspace/thirdparty/STM32L4A6ZGT/gcc-arm-none-eabi.cmake"
 
 SOURCE_FILES_PATH = "/workspace/hal/base_example/src"
-HAL_FILES_PATH = "/workspace/thirdparty/STM32L4XX_HAL/Src"
 STARTUP_FILES_PATH = "/workspace/thirdparty/STM32L4A6ZGT"
 
 INCLUDES_PATHS = "/workspace/hal/base_example/inc:/workspace/thirdparty/STM32L4XX_HAL/Inc:/workspace/thirdparty/STM32L4XX_HAL/Inc/Legacy:/workspace/thirdparty/CMSIS_5/CMSIS/Core/Include:/workspace/thirdparty/cmsis-header-stm32/stm32l4xx/Include"
@@ -28,7 +27,6 @@ do_build () {
     cmake /workspace/hal/base_example \
      -DTOOLCHAIN_PATH=${TOOLCHAIN_PATH} \
      -DSOURCE_FILES_PATH=${SOURCE_FILES_PATH} \
-     -DHAL_FILES_PATH=${HAL_FILES_PATH} \
      -DSTARTUP_FILES_PATH=${STARTUP_FILES_PATH} \
      -DINCLUDES_PATHS=${INCLUDES_PATHS} \
      -DNAME=${NAME} -DVER=${PV}
