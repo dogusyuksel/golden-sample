@@ -23,6 +23,7 @@ set(CMAKE_PROJECT_NAME STM32F1_Custom)
 
 # Include toolchain file
 include("../../thirdparty/STM32F103C8T/gcc-arm-none-eabi.cmake")
+set(CMAKE_C_LINK_FLAGS "${CMAKE_C_LINK_FLAGS} -T \"/workspace/thirdparty/STM32F103C8T/STM32F103C8Tx_FLASH.ld\"")
 
 # Enable compile command to ease indexing with e.g. clangd
 set(CMAKE_EXPORT_COMPILE_COMMANDS TRUE)
