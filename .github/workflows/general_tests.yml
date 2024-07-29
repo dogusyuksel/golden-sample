@@ -78,11 +78,11 @@ jobs:
 
     - name: hal Build Check
       run: |
-        ./docker/run_docker.sh ${{ secrets.DOCKER_REPO }}:master "cd /workspace/hal && ./download_repos.sh && cd build && ./build_all.sh"
+        ./docker/run_docker.sh ${{ secrets.DOCKER_REPO }}:master "cd /workspace/hal/build && ./build_all.sh"
 
     - name: rtos Build Check
       run: |
-        ./docker/run_docker.sh ${{ secrets.DOCKER_REPO }}:master "cd /workspace/rtos && ./download_repos.sh && cd build && ./build_all.sh"
+        ./docker/run_docker.sh ${{ secrets.DOCKER_REPO }}:master "cd /workspace/rtos/build && ./build_all.sh"
 
     - name: stlink check
       run: |

@@ -1,21 +1,5 @@
 #!/bin/bash
 
-if [ ! -d "../thirdparty/cmsis-header-stm32" ]; then
-    git clone https://github.com/modm-io/cmsis-header-stm32.git ../thirdparty/cmsis-header-stm32
-fi
-
-if [ ! -d "../thirdparty/CMSIS_5" ]; then
-    git clone https://github.com/ARM-software/CMSIS_5.git ../thirdparty/CMSIS_5
-fi
-
-if [ ! -d "../thirdparty/FreeRTOS-Kernel" ]; then
-    git clone https://github.com/FreeRTOS/FreeRTOS-Kernel.git ../thirdparty/FreeRTOS-Kernel
-fi
-
-if [ ! -d "../thirdparty/openocd" ]; then
-    git clone https://github.com/STMicroelectronics/OpenOCD.git ../thirdparty/openocd
-fi
-
 if [ ! -d "CANBUS/libcanard" ]; then
     git clone https://github.com/OpenCyphal/libcanard.git CANBUS/libcanard
     cd CANBUS/libcanard
