@@ -12,10 +12,10 @@
 #define UNSIGNED_CHAR_FIRST_EEPROM_DATA_ADDRESS 0x0001
 #define UNSIGNED_CHAR_SECOND_EEPROM_DATA_ADDRESS 0x0100
 
-unsigned char glb_ucDataFromFirstEEProm[64];
-unsigned char glb_ucDataToFirstEEProm[64];
-unsigned char glb_ucDataFromSecondEEProm[64];
-unsigned char glb_ucDataToSecondEEProm[64];
+uint8_t glb_ucDataFromFirstEEProm[64];
+uint8_t glb_ucDataToFirstEEProm[64];
+uint8_t glb_ucDataFromSecondEEProm[64];
+uint8_t glb_ucDataToSecondEEProm[64];
 
 ADC_HandleTypeDef hadc2;
 CAN_HandleTypeDef hcan;
@@ -71,7 +71,7 @@ int main(void) {
     memcpy(glb_ucDataToFirstEEProm, (char *)"Dogus Yuksel", 12);
     MC25LC512_Write((unsigned short)UNSIGNED_CHAR_FIRST_EEPROM_DATA_ADDRESS, glb_ucDataToFirstEEProm, 12);
     MC25LC512_Read((unsigned short)UNSIGNED_CHAR_FIRST_EEPROM_DATA_ADDRESS, glb_ucDataFromFirstEEProm, 12);
-    HAL_UART_Transmit(&huart3, (uint8_t *)glb_ucDataFromFirstEEProm, strlen(glb_ucDataFromFirstEEProm), 100);
+    HAL_UART_Transmit(&huart3, (uint8_t *)glb_ucDataFromFirstEEProm, strlen((char *)glb_ucDataFromFirstEEProm), 100);
 
     MC25LC512_Initilize(&hspi1, EEPROM_CS0_GPIO_Port, EEPROM_CS1_Pin); // init eeprom
     HAL_Delay(150);
@@ -79,7 +79,7 @@ int main(void) {
     memcpy(glb_ucDataToSecondEEProm, (char *)"Test/Try", 8);
     MC25LC512_Write((unsigned short)UNSIGNED_CHAR_SECOND_EEPROM_DATA_ADDRESS, glb_ucDataToSecondEEProm, 8);
     MC25LC512_Read((unsigned short)UNSIGNED_CHAR_SECOND_EEPROM_DATA_ADDRESS, glb_ucDataFromSecondEEProm, 8);
-    HAL_UART_Transmit(&huart3, (uint8_t *)glb_ucDataFromSecondEEProm, strlen(glb_ucDataFromSecondEEProm), 100);
+    HAL_UART_Transmit(&huart3, (uint8_t *)glb_ucDataFromSecondEEProm, strlen((char *)glb_ucDataFromSecondEEProm), 100);
 
     xTaskCreate(mytask, "mytask", configMINIMAL_STACK_SIZE, NULL, tskIDLE_PRIORITY, NULL);
 
