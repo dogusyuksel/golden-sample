@@ -15,12 +15,11 @@ jobs:
         github-server-url: https://github.com/dogusyuksel/golden-sample
         lfs: true
 
-    - uses: dorny/paths-filter@v3
-      id: changes
+    - name: Checkout embedded_docker
+      uses: actions/checkout@v2
       with:
-        filters: |
-          dockerfile:
-            - 'docker/**'
+        repository: dogusyuksel/embedded_docker
+        path: './docker'
 
     - name: Login to Docker Hub
       uses: docker/login-action@v3
@@ -91,12 +90,6 @@ jobs:
       run: |
         ./docker/run_docker.sh ${{ secrets.DOCKER_REPO }}:master "st-info  --version"
 
-    - name: Hadolint Check
-      uses: hadolint/hadolint-action@v3.1.0
-      with:
-        dockerfile: docker/Dockerfile
-        failure-threshold: error
-
     - name: pytest
       run: |
          ./docker/run_docker.sh ${{ secrets.DOCKER_REPO }}:master "cd /workspace/python/extended-grep && pytest"
@@ -105,15 +98,3 @@ jobs:
       run: |
          echo "'isort .' can be executed if needed"
          ./docker/run_docker.sh ${{ secrets.DOCKER_REPO }}:master "cd /workspace/python && flake8 --max-line-length=120"
-
-    - name: Push Project Docker
-      if: steps.changes.outputs.dockerfile == 'true'
-      uses: docker/build-push-action@v5
-      with:
-        tags: |
-          ${{ secrets.DOCKER_REPO }}:master
-        context: .
-        file: docker/Dockerfile
-        pull: true
-        push: true
-        provenance: false
