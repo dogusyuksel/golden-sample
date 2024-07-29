@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #this cannot be used inside docker
-openocd -f ../thirdparty/openocd/tcl/board/stm32f103c8_blue_pill.cfg
+openocd -f ../thirdparty/STM32F103C8T/stm32f103c8_blue_pill.cfg
 
 # then in another terminal (or even in docker), run below
 # gdb-multiarch $1/build/$1.elf
