@@ -16,3 +16,6 @@
 [submodule "thirdparty/STM32L4XX_HAL"]
 	path = thirdparty/STM32L4XX_HAL
 	url = https://github.com/STMicroelectronics/stm32l4xx_hal_driver.git
+[submodule "rtos"]
+	path = rtos
+	url = https://github.com/dogusyuksel/rtos_hal_stm32
