@@ -70,7 +70,7 @@ jobs:
 
     - name: custom Build Check
       run: |
-        ./docker/run_docker.sh ${{ secrets.DOCKER_REPO }}:master "cd /workspace/hw_tools && ./download_repos.sh && ./bake.sh all clean build"
+        ./docker/run_docker.sh ${{ secrets.DOCKER_REPO }}:master "cd /workspace/hw_tools && ./bake.sh all clean build"
 
     - name: hal Build Check
       run: |
