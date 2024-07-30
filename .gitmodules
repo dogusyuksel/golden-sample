@@ -22,3 +22,6 @@
 [submodule "canbus_stm32"]
 	path = canbus_stm32
 	url = https://github.com/dogusyuksel/canbus_stm32
+[submodule "mc25lc512_stm32"]
+	path = mc25lc512_stm32
+	url = https://github.com/dogusyuksel/mc25lc512_stm32
