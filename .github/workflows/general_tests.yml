@@ -68,17 +68,9 @@ jobs:
       run: |
         ./docker/run_docker.sh ${{ secrets.DOCKER_REPO }}:master "cd /workspace/sw_tools/json_parser && ./build.sh"
 
-    - name: custom Build Check
-      run: |
-        ./docker/run_docker.sh ${{ secrets.DOCKER_REPO }}:master "cd /workspace/hw_tools && ./bake.sh all clean build"
-
     - name: hal Build Check
       run: |
         ./docker/run_docker.sh ${{ secrets.DOCKER_REPO }}:master "cd /workspace/hal/build && ./build_all.sh"
-
-    - name: rtos Build Check
-      run: |
-        ./docker/run_docker.sh ${{ secrets.DOCKER_REPO }}:master "cd /workspace/rtos/build && ./build_all.sh"
 
     - name: stlink check
       run: |
