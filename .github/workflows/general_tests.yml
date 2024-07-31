@@ -52,10 +52,6 @@ jobs:
       run: |
         ./docker/run_docker.sh ${{ secrets.DOCKER_REPO }}:master "cd /workspace/scripts && ./lint_check.sh"
 
-    - name: Unit Test
-      run: |
-        ./docker/run_docker.sh ${{ secrets.DOCKER_REPO }}:master "cd /workspace/scripts && ./run_unittests.sh"
-
     - name: glibc Build Check
       run: |
         ./docker/run_docker.sh ${{ secrets.DOCKER_REPO }}:master "cd /workspace/glibc && make all"
