@@ -31,3 +31,6 @@
 [submodule "embedded_linting"]
 	path = embedded_linting
 	url = https://github.com/dogusyuksel/embedded_linting
+[submodule "cjson_parser"]
+	path = cjson_parser
+	url = https://github.com/dogusyuksel/cjson_parser
