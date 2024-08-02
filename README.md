@@ -1,3 +1,3 @@
-Please check individual README.md files.
+This project is like a collection of my other useful projects.
 
-This is completely FREE project.
+Please check submodules' README.md files.
