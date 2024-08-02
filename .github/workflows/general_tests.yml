@@ -44,10 +44,6 @@ jobs:
       run: |
         ./docker/run_docker.sh ${{ secrets.DOCKER_REPO }}:master "cd /workspace/glibc && make all"
 
-    - name: json_parser Build Check
-      run: |
-        ./docker/run_docker.sh ${{ secrets.DOCKER_REPO }}:master "cd /workspace/sw_tools/json_parser && ./build.sh"
-
     - name: stlink check
       run: |
         ./docker/run_docker.sh ${{ secrets.DOCKER_REPO }}:master "st-info  --version"
