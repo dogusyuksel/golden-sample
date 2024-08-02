@@ -16,12 +16,15 @@
 [submodule "thirdparty/STM32L4XX_HAL"]
 	path = thirdparty/STM32L4XX_HAL
 	url = https://github.com/STMicroelectronics/stm32l4xx_hal_driver.git
-[submodule "rtos"]
-	path = rtos
-	url = https://github.com/dogusyuksel/rtos_hal_stm32
 [submodule "canbus_stm32"]
 	path = canbus_stm32
 	url = https://github.com/dogusyuksel/canbus_stm32
 [submodule "mc25lc512_stm32"]
 	path = mc25lc512_stm32
 	url = https://github.com/dogusyuksel/mc25lc512_stm32
+[submodule "uart_bootloader_stm32"]
+	path = uart_bootloader_stm32
+	url = https://github.com/dogusyuksel/uart_bootloader_stm32
+[submodule "rtos_hal_stm32"]
+	path = rtos_hal_stm32
+	url = https://github.com/dogusyuksel/rtos_hal_stm32
