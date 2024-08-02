@@ -28,3 +28,6 @@
 [submodule "rtos_hal_stm32"]
 	path = rtos_hal_stm32
 	url = https://github.com/dogusyuksel/rtos_hal_stm32
+[submodule "embedded_linting"]
+	path = embedded_linting
+	url = https://github.com/dogusyuksel/embedded_linting
