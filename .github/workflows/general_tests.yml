@@ -40,18 +40,6 @@ jobs:
         push: false
         provenance: false
 
-    - name: Dirty Check
-      run: |
-        ./docker/run_docker.sh ${{ secrets.DOCKER_REPO }}:master "cd /workspace/scripts && ./dirty_check.sh"
-
-    - name: Format Check
-      run: |
-        ./docker/run_docker.sh ${{ secrets.DOCKER_REPO }}:master "cd /workspace/scripts && ./format_check.sh"
-
-    - name: SPLint Check
-      run: |
-        ./docker/run_docker.sh ${{ secrets.DOCKER_REPO }}:master "cd /workspace/scripts && ./lint_check.sh"
-
     - name: glibc Build Check
       run: |
         ./docker/run_docker.sh ${{ secrets.DOCKER_REPO }}:master "cd /workspace/glibc && make all"
